@@ -1,0 +1,40 @@
+Dżungla musi być zbyt zarośnięta i trudna do poruszania się pojazdami lub dostępu z powietrza; wyprawa elfów tradycyjnie idzie pieszo. Gdy twoje łodzie zbliżają się do lądu, elfy zaczynają inwentaryzować swoje zapasy. Jedną z ważnych kwestii jest jedzenie – w szczególności liczba kalorii, które niesie ze sobą każdy elf (dane z puzzli).
+
+Elfy na zmianę zapisują liczbę kalorii zawartych w różnych posiłkach, przekąskach, racjach żywnościowych itp., które ze sobą przyniosły, po jednej pozycji w rzędzie. Każdy elf oddziela swój własny ekwipunek od ekwipunku poprzedniego elfa (jeśli istnieje) pustą linią.
+
+Załóżmy na przykład, że elfy kończą zapisywanie kalorii swoich produktów i kończą z następującą listą:
+
+1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000
+
+Ta lista przedstawia kalorie jedzenia niesionego przez pięć elfów:
+
+Pierwszy elf niesie jedzenie zawierające 1000, 2000 i 3000 kalorii, czyli łącznie 6000 kalorii.
+Drugi Elf niesie jeden produkt spożywczy z 4000 kalorii.
+Trzeci Elf niesie jedzenie z 5000 i 6000 kalorii, w sumie 11000 kalorii.
+Czwarty elf niesie jedzenie zawierające 7000, 8000 i 9000 kalorii, w sumie 24000 kalorii.
+Piąty elf niesie ze sobą jeden produkt spożywczy zawierający 10000 kalorii.
+W przypadku, gdy elfy zgłodnieją i będą potrzebować dodatkowych przekąsek, muszą wiedzieć, którego elfa zapytać: chcą wiedzieć, ile kalorii niesie elf niosący najwięcej kalorii. W powyższym przykładzie jest to 24000 (noszony przez czwartego Elfa).
+
+Znajdź elfa niosącego najwięcej kalorii. Ile łącznie kalorii ma ten elf?
+
+--- Część druga ---
+Zanim obliczysz odpowiedź na pytanie elfów, one już zdadzą sobie sprawę, że elfowi niosącemu najwięcej kalorii jedzenia może w końcu zabraknąć przekąsek.
+
+Aby uniknąć tej niedopuszczalnej sytuacji, elfy wolałyby zamiast tego znać całkowitą liczbę kalorii niesionych przez trzech najlepszych elfów niosących najwięcej kalorii. W ten sposób, nawet jeśli jednemu z tych elfów zabraknie przekąsek, nadal będą mieli dwie kopie zapasowe.
+
+W powyższym przykładzie trzy najlepsze Elfy to czwarty Elf (z 24 000 kalorii), następnie trzeci Elf (z 11 000 kalorii), a następnie piąty Elf (z 10 000 kalorii). Suma kalorii niesionych przez te trzy elfy wynosi 45000.
+
+Znajdź trzy najlepsze Elfy niosące najwięcej kalorii. Ile kalorii łącznie niosą te elfy?

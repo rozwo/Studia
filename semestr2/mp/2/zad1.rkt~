@@ -1,0 +1,19 @@
+#lang racket
+
+;y-zmienna wolna, x-zmienna wiazaca
+;(let ([x 3]) (+ x y))
+
+;x(2)-zmienna wolna, x(1),y-zmienne wiazace
+;(let ([x 1] [y (+ x 2)]) (+ x y))
+
+;x,y-zmienne wiazace
+;(let ([x 1]) (let ([y (+ x 2)]) (* x y)))
+
+;z-zmienna wolna, x,y-zmienne wiazace
+;(define (f x y) (* x y z ))
+
+;x,y,z-zmienne wiazace
+(define (f x)
+  (define (g y z)
+    (* x y z))
+  (f x x x))

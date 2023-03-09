@@ -1,0 +1,6 @@
+#lang racket
+
+(define (elem? x xs)
+  (cond [(= xs (list)) #f]
+        [(= (car xs) x) #t]
+        [else (elem? x (cdr xs))]))

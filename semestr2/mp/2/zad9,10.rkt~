@@ -1,0 +1,29 @@
+#lang racket
+
+;zadanie 9
+
+(define (minimum xs)
+  (define (min xs m)
+    (cond [(null? xs) m]
+          [(< (car xs) m)
+            (min (cdr xs) (car xs))]
+          [else (min (cdr xs) m)]))
+  (min xs +inf.0))
+
+(define (delete-x x xs)
+  (cond [(null? xs) null]
+        [(= x (car xs)) (cdr xs)]
+        [else (cons (car xs) (delete-x x (cdr xs)))]))
+
+(define (select xs)
+  (if (null? xs)
+      null
+      (cons (minimum xs) (delete-x (minimum xs) xs))))
+
+(define (select-sort xs)
+  (if (null? xs)
+      null
+      (cons (car (select xs)) (select-sort (cdr (select xs))))))
+
+
+

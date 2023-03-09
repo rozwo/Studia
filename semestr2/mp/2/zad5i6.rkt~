@@ -1,0 +1,9 @@
+#lang racket
+
+;zadanie 5
+(define (elem? x xs)
+  (cond [(null? xs) #f]
+        [(= (car xs) x) #t]
+        [else (elem? x (cdr xs))]))
+
+;zadanie 6

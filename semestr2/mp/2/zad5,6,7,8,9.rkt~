@@ -1,0 +1,68 @@
+#lang racket
+
+;zadanie 5
+(define (elem? x xs)
+  (cond [(null? xs) #f]
+        [(= (car xs) x) #t]
+        [else (elem? x (cdr xs))]))
+
+;zadanie 6
+(define (maximum xs)
+  (define (it xs m)
+    (if (null? xs)
+        m
+        (if (> (car xs) m)
+            (it (cdr xs) (car xs))
+            (it (cdr xs) m))))
+  (it xs -inf.0))
+
+;zadanie 7
+(define (suffixes xs)
+  (define (my-append xs)
+    (if (null? xs)
+        (list xs)
+        (cons xs
+              (my-append (cdr xs)))))
+  (my-append xs))
+
+;zadanie 8
+(define (sorted? xs)
+  (define (it xs x)
+    (cond [(null? xs) #t]
+          [(< (car xs) x) #f]
+          [else (it (cdr xs) (car xs))]))
+  (it xs -inf.0))
+
+;zadanie 9
+(define (select xs)
+  (define (it p k)
+    (if (null? k)
+        p
+        (if (< (car k) (car p)) ;cos tu nie jest dobrze...
+            (it (list (car k) (cdr p) (car p)) (cdr k))
+            (it (list p (car k)) (cdr k)))))
+  (it (list (car xs)) (cdr xs)))
+
+(define (select-sort xs)
+  (define (it xs ys)
+    (if (null? xs)
+        ys
+        (it (cdr xs) (cons ys (car (select xs))))))
+  (it xs null))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

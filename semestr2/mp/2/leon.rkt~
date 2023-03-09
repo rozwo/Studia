@@ -1,0 +1,19 @@
+#lang racket
+
+(define-struct matrix (a b c d))
+
+(define (print-matrix m)
+  (display "|")
+  (display (matrix-a m))
+  (display " ")
+  (display (matrix-b m))
+  (displayln "|")
+  (display "|")
+  (display (matrix-c m))
+  (display " ")
+  (display (matrix-d m))
+  (displayln "|"))
+
+(define my-matrix (make-matrix 1 2 3 4))
+
+(print-matrix my-matrix)
