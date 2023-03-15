@@ -1,0 +1,6 @@
+#lang racket
+
+
+
+((my-compose square inc) 5)
+((my-compose inc square) 5)

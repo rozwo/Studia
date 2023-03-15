@@ -1,0 +1,8 @@
+#lang racket
+
+(define (product xs)
+  (define (it xs acc)
+    (if (null? xs)
+        acc
+        (it (cdr xs) (* (car xs) acc))))
+  (it xs 1))

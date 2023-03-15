@@ -1,0 +1,11 @@
+#lang racket
+
+( build-list n f) = ( list (f 0) ... (f (- n 1) ))
+
+(negatives n) ; zwracającą listę liczb ujemnych od −1 do −n,
+(reciprocals n) ; zwracającą listę odwrotności liczb od 1 do n (czyli 1, . . . , 1 n ),
+(evens n) ; zwracajacą listę pierwszych n liczb parzystych,
+(identityM n) ; zwracającą macierz identycznościową o wymiarach n × n
+;w postaci listy list:
+;> ( identityM 3)
+;'((1 0 0) (0 1 0) (0 0 1) )
