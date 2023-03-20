@@ -1,0 +1,20 @@
+#lang racket
+
+(define-struct leaf () #:transparent)
+(define-struct node (l elem r) #:transparent)
+
+
+(define (foldr f acc t)
+  (if (leaf? t)
+      acc
+      (f (foldr f acc (node-l t)) (node-elem t) (foldr f acc (node-r t)))))
+
+#;(define (find-bst x t)
+  (cond [(leaf? t) #f]
+        [(node? t)
+         (cond [(= x (node-elem t)) #t]
+               [(< x (node-elem t))
+                (find-bst x (node-l t))]
+               [else
+                (find-bst x (node-r t))])]))
+
