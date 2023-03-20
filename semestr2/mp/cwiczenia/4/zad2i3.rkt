@@ -3,17 +3,15 @@
 (define-struct leaf () #:transparent)
 (define-struct node (l elem r) #:transparent)
 
-
+;zadanie 2
 (define (fold-tree f acc t)
   (if (leaf? t)
       acc
       (f (fold-tree f acc (node-l t)) (node-elem t) (fold-tree f acc (node-r t)))))
 
-
 ;suma wszystkich wartości występujących w drzewie
 (define (tree-sum t)
   (fold-tree + 0 t))
-
 
 ;odwrócenie kolejności: zamiana lewego i prawego poddrzewa wszystkich węzłów w drzewie
 (define (flip l elem r)
@@ -21,7 +19,6 @@
 
 (define (tree-flip t)
   (fold-tree flip (leaf) t))
-
 
 ;wysokosć drzewa (liczba węzłów na najdłuższej ścieżce od korzenia do liścia)
 (define (heigh l elem r)
@@ -31,7 +28,6 @@
 
 (define (tree-height t)
   (fold-tree heigh 0 t))
-
 
 ;para złożona z wartości skrajnie prawego i skrajnie lewego węzła w drzewie
 ;(czyli najmniejszej i największej wartości w drzewie BST)
@@ -44,11 +40,15 @@
 (define (tree-span t)
   (fold-tree span null t))
 
-
 ;lista wszystkich elementów występujących w drzewie, w kolejności infiksowej
-;(define (flatten t))
+(define (f_flatten l elem r)
+  (cond [(and (null? l) (null? r)) (list elem)]
+        [(null? l) (append (list elem) r)]
+        [(null? r) (append l (list elem))]
+        [else (append l (list elem) r)]))
 
-
+(define (flatten t)
+  (fold-tree f_flatten null t))
 
 ;testy
 (define t
@@ -66,4 +66,46 @@
 (tree-flip t)
 (tree-height t)
 (tree-span t)
-;(flatten t)
+(flatten t)
+
+
+;zadanie 3
+(define (bst? t)
+  (define (it f x t)
+    (cond [(leaf? t) #t]
+          [(node? t) (and (f x (node-elem t))
+                          (it > (node-elem t) (node-l t))
+                          (it < (node-elem t) (node-r t)))]
+          [else #f]))
+  (and (it > (node-elem t) (node-l t)) (it < (node-elem t) (node-r t))))
+
+
+
+;testy
+(define t1
+  (node
+   (node (leaf) 2 (leaf))
+   5
+   (node
+    (node (leaf)
+          6
+          (node (leaf) 7 (leaf)))
+    8
+    (node (leaf) 9 (leaf)))))
+
+(define t2
+  (node
+   (node (leaf) 7 (leaf))
+   5
+   (node
+    (node (leaf)
+          6
+          (node (leaf) 3 (leaf)))
+    8
+    (node (leaf) 9 (leaf)))))
+
+(bst? t1)
+(bst? t2)
+
+
+
