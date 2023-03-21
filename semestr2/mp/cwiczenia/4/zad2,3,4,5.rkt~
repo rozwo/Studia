@@ -70,6 +70,8 @@
 
 
 ;zadanie 3
+;predykat sprawdzający, czy zadane drzewo spełnia własność BST.
+;Zadbaj o to, aby każdy wierzchołek drzewa odwiedzić tylko raz.
 (define (bst? t)
   (define (it f x t)
     (cond [(leaf? t) #t]
@@ -79,6 +81,17 @@
           [else #f]))
   (and (it > (node-elem t) (node-l t)) (it < (node-elem t) (node-r t))))
 
+;produkuje drzewo o tym samym kształcie co t,
+;w którym etykietą danego węzła jest suma wartości węzłów na ścieżce
+;od korzenia drzewa do tego węzła
+(define (sum-paths t)
+  (define (it t acc)
+    (if (leaf? t)
+        (leaf)
+        (node (it (node-l t) (+ acc (node-elem t)))
+              (+ acc (node-elem t))
+              (it (node-r t) (+ acc (node-elem t))))))
+  (it t 0))
 
 
 ;testy
@@ -106,6 +119,51 @@
 
 (bst? t1)
 (bst? t2)
+(sum-paths t1)
+
+
+;zadanie 4
+;Napisz inną implementację flatten, która nie posiada tej wady. Nie używaj procedury append!
+(define (flatten2 t)
+  (define (it t xs)
+    (if (leaf? t)
+        xs
+        (it (node-l t) 
+                     (cons (node-elem t)
+                           (it (node-r t) xs)))))
+  (it t null))
+
+(flatten2 t)
+
+
+;zadanie 5
+;Zmodyfikuj procedurę insert z wykładu (wstawiającą element do drzewa BST)
+;tak, aby możliwe było tworzenie drzew BST z duplikatami. Możesz założyć,
+;że elementy równe elementowi w korzeniu drzewa będą trafiać do prawego poddrzewa.
+(define (insert-bst2 x t)
+  (cond [(leaf? t) (node (leaf) x (leaf))]
+        [(node? t)
+         (cond  ;usunelismy ten kawalek i tyle ;[(= x (node-elem t)) t]
+                [(< x (node-elem t))
+                 (node (insert-bst2 x (node-l t))
+                       (node-elem t)
+                       (node-r t))]
+                [else
+                 (node (node-l t)
+                       (node-elem t)
+                       (insert-bst2 x (node-r t)))])]))
+
+;algorytm sortowania przy użyciu drzew BST
+(define (treesort xs)
+  (define (it t xs)
+    (if (null? xs)
+        t
+        (it (insert-bst2 (car xs) t) (cdr xs))))
+  (flatten (it (leaf) xs)))
+
+;test
+(treesort (list 4 5 3 2 1 6 7))
+
 
 
 

@@ -1,0 +1,194 @@
+#lang racket
+
+(define-struct leaf () #:transparent)
+(define-struct node (l elem r) #:transparent)
+
+(define (insert-bst x t)
+  (cond [(leaf? t) (node (leaf) x (leaf))]
+        [(node? t)
+         (cond [(= x (node-elem t)) t]
+                [(< x (node-elem t))
+                 (node (insert-bst x (node-l t))
+                       (node-elem t)
+                       (node-r t))]
+                [else
+                 (node (node-l t)
+                       (node-elem t)
+                       (insert-bst x (node-r t)))])]))
+
+;zadanie 2
+(define (fold-tree f acc t)
+  (if (leaf? t)
+      acc
+      (f (fold-tree f acc (node-l t)) (node-elem t) (fold-tree f acc (node-r t)))))
+
+;suma wszystkich wartości występujących w drzewie
+(define (tree-sum t)
+  (fold-tree + 0 t))
+
+;odwrócenie kolejności: zamiana lewego i prawego poddrzewa wszystkich węzłów w drzewie
+(define (flip l elem r)
+  (node r elem l))
+
+(define (tree-flip t)
+  (fold-tree flip (leaf) t))
+
+;wysokosć drzewa (liczba węzłów na najdłuższej ścieżce od korzenia do liścia)
+#;(define (heigh l elem r)
+  (if (> l r)
+      (+ l 1)
+      (+ r 1)))
+(define (heigh l elem r)
+  (+ (max l r) 1))
+
+(define (tree-height t)
+  (fold-tree heigh 0 t))
+
+;para złożona z wartości skrajnie prawego i skrajnie lewego węzła w drzewie
+;(czyli najmniejszej i największej wartości w drzewie BST)
+#;(define (span l elem r)
+  (cond [(and (null? l) (null? r)) (cons elem elem)]
+        [(null? l) (cons elem (cdr r))]
+        [(null? r) (cons (car l) elem)]
+        [else (cons (car l) (cdr r))]))
+
+#;(define (tree-span t)
+  (fold-tree span null t))
+
+(define (span l elem r)
+  (cond [(and l r) (cons (car l) (cdr r))]
+        [r (cons elem (cdr r))]
+        [l (cons (car l) elem)]
+        [else (cons elem elem)]))
+
+(define (tree-span t)
+  (fold-tree span #f t))
+
+;lista wszystkich elementów występujących w drzewie, w kolejności infiksowej
+(define (f_flatten l elem r)
+  (cond [(and (null? l) (null? r)) (list elem)]
+        [(null? l) (append (list elem) r)]
+        [(null? r) (append l (list elem))]
+        [else (append l (list elem) r)]))
+
+(define (flatten t)
+  (fold-tree f_flatten null t))
+
+;testy
+(define t
+  (node
+   (node (leaf) 2 (leaf))
+   5
+   (node
+    (node (leaf)
+          6
+          (node (leaf) 7 (leaf)))
+    8
+    (node (leaf) 9 (leaf)))))
+
+;(tree-sum t)
+;(tree-flip t)
+;(tree-height t)
+;(tree-span t)
+;(flatten t)
+
+
+;zadanie 3
+;predykat sprawdzający, czy zadane drzewo spełnia własność BST.
+;Zadbaj o to, aby każdy wierzchołek drzewa odwiedzić tylko raz.
+(define (bst? t)
+  (define (it f x t)
+    (cond [(leaf? t) #t]
+          [(node? t) (and (f x (node-elem t))
+                          (it > (node-elem t) (node-l t))
+                          (it < (node-elem t) (node-r t)))]
+          [else #f]))
+  (and (it > (node-elem t) (node-l t)) (it < (node-elem t) (node-r t))))
+
+;produkuje drzewo o tym samym kształcie co t,
+;w którym etykietą danego węzła jest suma wartości węzłów na ścieżce
+;od korzenia drzewa do tego węzła
+(define (sum-paths t)
+  (define (it t acc)
+    (if (leaf? t)
+        (leaf)
+        (node (it (node-l t) (+ acc (node-elem t)))
+              (+ acc (node-elem t))
+              (it (node-r t) (+ acc (node-elem t))))))
+  (it t 0))
+
+
+;testy
+(define t1
+  (node
+   (node (leaf) 2 (leaf))
+   5
+   (node
+    (node (leaf)
+          6
+          (node (leaf) 7 (leaf)))
+    8
+    (node (leaf) 9 (leaf)))))
+
+(define t2
+  (node
+   (node (leaf) 7 (leaf))
+   5
+   (node
+    (node (leaf)
+          6
+          (node (leaf) 3 (leaf)))
+    8
+    (node (leaf) 9 (leaf)))))
+
+;(bst? t1)
+;(bst? t2)
+;(sum-paths t1)
+
+
+;zadanie 4
+;Napisz inną implementację flatten, która nie posiada tej wady. Nie używaj procedury append!
+(define (flatten2 t)
+  (define (it t xs)
+    (if (leaf? t)
+        xs
+        (it (node-l t) 
+                     (cons (node-elem t)
+                           (it (node-r t) xs)))))
+  (it t null))
+
+;test
+;(flatten2 t)
+
+
+;zadanie 5
+;Zmodyfikuj procedurę insert z wykładu (wstawiającą element do drzewa BST)
+;tak, aby możliwe było tworzenie drzew BST z duplikatami. Możesz założyć,
+;że elementy równe elementowi w korzeniu drzewa będą trafiać do prawego poddrzewa.
+(define (insert-bst2 x t)
+  (cond [(leaf? t) (node (leaf) x (leaf))]
+        [(node? t)
+         (cond  ;usunelam ten kawalek -> [(= x (node-elem t)) t]
+                [(< x (node-elem t))
+                 (node (insert-bst2 x (node-l t))
+                       (node-elem t)
+                       (node-r t))]
+                [else
+                 (node (node-l t)
+                       (node-elem t)
+                       (insert-bst2 x (node-r t)))])]))
+
+;algorytm sortowania przy użyciu drzew BST
+(define (treesort xs)
+  (define (it t xs)
+    (if (null? xs)
+        t
+        (it (insert-bst2 (car xs) t) (cdr xs))))
+  (flatten2 (it (leaf) xs)))
+
+;test
+(treesort (list))
+(treesort (list 4 8 5 3 2 1 6 7))
+(treesort (list 4 5 3 8 2 3 1 6 7))
+(treesort (list 4 1 8 1 1 5 3 2 1 6 7))
+

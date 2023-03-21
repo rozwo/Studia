@@ -1,0 +1,17 @@
+#lang racket
+
+(define (flatten-append t)
+  (if (leaf? t)
+      null
+      (append (flatten-append (node-left t))
+              (cons (node-elem t)
+                    (flatten-append (node-right t))))))
+
+(define (flatten t)
+  (define (flatten-aux t xs)
+    (if (leaf? t)
+        xs
+        (flatten-aux (node-left t) 
+                     (cons (node-elem t)
+                           (flatten-aux (node-right t) xs)))))
+  (flatten-aux t null))

@@ -1,0 +1,124 @@
+#lang racket
+
+(define-struct leaf () #:transparent)
+(define-struct node (l elem r) #:transparent)
+
+;zadanie 2
+(define (fold-tree f acc t)
+  (if (leaf? t)
+      acc
+      (f (fold-tree f acc (node-l t)) (node-elem t) (fold-tree f acc (node-r t)))))
+
+;suma wszystkich wartości występujących w drzewie
+(define (tree-sum t)
+  (fold-tree + 0 t))
+
+;odwrócenie kolejności: zamiana lewego i prawego poddrzewa wszystkich węzłów w drzewie
+(define (flip l elem r)
+  (node r elem l))
+
+(define (tree-flip t)
+  (fold-tree flip (leaf) t))
+
+;wysokosć drzewa (liczba węzłów na najdłuższej ścieżce od korzenia do liścia)
+(define (heigh l elem r)
+  (if (> l r)
+      (+ l 1)
+      (+ r 1)))
+
+(define (tree-height t)
+  (fold-tree heigh 0 t))
+
+;para złożona z wartości skrajnie prawego i skrajnie lewego węzła w drzewie
+;(czyli najmniejszej i największej wartości w drzewie BST)
+(define (span l elem r)
+  (cond [(and (null? l) (null? r)) (cons elem elem)]
+        [(null? l) (cons elem (cdr r))]
+        [(null? r) (cons (car l) elem)]
+        [else (cons (car l) (cdr r))]))
+
+(define (tree-span t)
+  (fold-tree span null t))
+
+;lista wszystkich elementów występujących w drzewie, w kolejności infiksowej
+(define (f_flatten l elem r)
+  (cond [(and (null? l) (null? r)) (list elem)]
+        [(null? l) (append (list elem) r)]
+        [(null? r) (append l (list elem))]
+        [else (append l (list elem) r)]))
+
+(define (flatten t)
+  (fold-tree f_flatten null t))
+
+;testy
+(define t
+  (node
+   (node (leaf) 2 (leaf))
+   5
+   (node
+    (node (leaf)
+          6
+          (node (leaf) 7 (leaf)))
+    8
+    (node (leaf) 9 (leaf)))))
+
+(tree-sum t)
+(tree-flip t)
+(tree-height t)
+(tree-span t)
+(flatten t)
+
+
+;zadanie 3
+;predykat sprawdzający, czy zadane drzewo spełnia własność BST.
+;Zadbaj o to, aby każdy wierzchołek drzewa odwiedzić tylko raz.
+(define (bst? t)
+  (define (it f x t)
+    (cond [(leaf? t) #t]
+          [(node? t) (and (f x (node-elem t))
+                          (it > (node-elem t) (node-l t))
+                          (it < (node-elem t) (node-r t)))]
+          [else #f]))
+  (and (it > (node-elem t) (node-l t)) (it < (node-elem t) (node-r t))))
+
+;produkuje drzewo o tym samym kształcie co t,
+;w którym etykietą danego węzła jest suma wartości węzłów na ścieżce
+;od korzenia drzewa do tego węzła
+(define (sum-paths t)
+  (define (f acc l elem r)
+    (node l (+ acc elem) r))
+  (define (it f acc t)
+    (if (leaf? t)
+        (leaf)
+        (f acc (it f (+ acc (node-elem t)) (node-l t)) (node-elem t) (it f (+ acc (node-elem t)) (node-r t)))))
+  (it f 0 t))
+
+
+;testy
+(define t1
+  (node
+   (node (leaf) 2 (leaf))
+   5
+   (node
+    (node (leaf)
+          6
+          (node (leaf) 7 (leaf)))
+    8
+    (node (leaf) 9 (leaf)))))
+
+(define t2
+  (node
+   (node (leaf) 7 (leaf))
+   5
+   (node
+    (node (leaf)
+          6
+          (node (leaf) 3 (leaf)))
+    8
+    (node (leaf) 9 (leaf)))))
+
+(bst? t1)
+(bst? t2)
+(sum-paths t1)
+
+

@@ -1,0 +1,53 @@
+#lang racket
+
+;zadanie 7
+;Lepszą reprezentacją kolejki jest para list:
+;pierwsza to prefiks kolejki, a druga to sufiks w odwróconej kolejności.
+
+;pusta kolejka
+#;(define empty-queue
+  null)
+(define empty-queue
+  (cons '() '()))
+
+;czy kolejka jest pusta ?
+#;(define (empty? q)
+  (null? q))
+(define (empty? q)
+  (null? (car q)))
+
+;dodaj element na koniec kolejki
+#;(define (push-back x q)
+  (append q (list x)))
+
+(define (reload xs ys)
+  (if (null? ys)
+      xs
+      (reload (cons (car ys) xs) (cdr ys))))
+
+(define (push-back x q)
+  (if (null? (car q)) ;przeladowujemy dopoki gdy poczatek pusty
+      (cons (reload (car q) (cons x (cdr q))) '())
+      (cons (car q) (cons x (cdr q)))))
+
+;podejrzyj element na poczatku kolejki
+#;(define (front q)
+  (car q))
+(define (front q)
+  (if (null? (car q))
+      "kolejka jest pusta"
+      (car (car q))))
+
+;zdejmij element z przodu kolejki
+#;(define (pop q)
+  (cdr q))
+(define (pop q)
+  (if (null? (car q))
+      (cons (cdr (reload '() (cdr q)) '())) ;problem gdy nie ma co sciagac 
+      (if (null? (cdr (car q)))
+          (cons (reload '() (cdr q)) '())
+          (cons (cdr (car q)) (cdr q)))))
+
+
+
+
