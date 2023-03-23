@@ -12,9 +12,6 @@ int main()
     a.nowa(2);
     a.printl();
 
-    a.~liczba();
-    a.printl();
-
     a.nowa(22);
     a.printl();
     a.nowa(33);
@@ -53,9 +50,9 @@ int main()
     c.nowa(11);
     c.printl();
 
-    liczba d = move(b);
-    d.printl();
-    b.printl();
+    a.printl();
+    a = move(b);
+    a.printl();
 
     return 0;
 }

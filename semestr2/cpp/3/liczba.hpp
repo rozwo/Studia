@@ -11,8 +11,8 @@ class liczba {
         liczba();
         ~liczba();
         liczba(double x);
-        liczba& operator=(const liczba &);
-        liczba& operator=(liczba &&);
+        liczba& operator=(const liczba &w);
+        liczba& operator=(liczba &&w);
         liczba(const liczba& w);
         liczba(liczba &&w);
         void nowa(double x);

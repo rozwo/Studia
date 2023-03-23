@@ -7,9 +7,7 @@ liczba::liczba() : liczba::liczba(0) { //konstruktor bezargumentowy
 }
 
 liczba::~liczba() { //destruktor
-    delete[] lista;
-    lista = new double[l]();
-    rozmiar = 0;
+    if(lista != nullptr) delete[] lista;
 }
 
 liczba::liczba(double x) {
@@ -19,9 +17,26 @@ liczba::liczba(double x) {
     index = 0;
 }
 
-liczba &liczba::operator=(const liczba &)= default;
+liczba &liczba::operator=(const liczba &w) {
+    if(this == &w) return *this;
+    this->~liczba();
+    lista = new double[l]();
+    index = w.index;
+    rozmiar = w.rozmiar;
+    for(int i = 0; i < min(rozmiar, l); i++)
+    {
+        lista[(l + index - i)%l] = w.lista[(l + index - i)%l];
+    }
+    return *this;
+}
 
-liczba &liczba::operator=(liczba &&)= default;
+liczba &liczba::operator=(liczba &&w) {
+    if(this == &w) return *this;
+    swap(lista, w.lista);
+    swap(index, w.index);
+    swap(rozmiar, w.rozmiar);
+    return *this;
+}
 
 liczba::liczba(const liczba &w) {
     lista = new double[l]();
@@ -30,12 +45,10 @@ liczba::liczba(const liczba &w) {
     index = 0;
 }
 
-liczba::liczba(liczba &&w) {
-    lista = w.lista;
-    index = w.index;
-    rozmiar = w.rozmiar;
-    w.lista = new double[l]();
-    w.rozmiar = 0;
+liczba::liczba(liczba &&w) : liczba::liczba(0) {
+    swap(lista, w.lista);
+    swap(index, w.index);
+    swap(rozmiar, w.rozmiar);
 }
 
 void liczba::nowa(double x) {
