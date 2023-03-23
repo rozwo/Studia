@@ -12,11 +12,6 @@ int main()
     a.nowa(2);
     a.printl();
 
-    a.nowa(22);
-    a.printl();
-    a.nowa(33);
-    a.printl();
-
     liczba b = liczba(1);
     b.printl();
 

@@ -1,7 +1,5 @@
 #include "liczba.hpp"
 
-int liczba::l = 4;
-
 liczba::liczba() : liczba::liczba(0) { //konstruktor bezargumentowy
 
 }
@@ -19,7 +17,7 @@ liczba::liczba(double x) {
 
 liczba &liczba::operator=(const liczba &w) {
     if(this == &w) return *this;
-    this->~liczba();
+    if(lista != nullptr) delete[] lista;
     lista = new double[l]();
     index = w.index;
     rozmiar = w.rozmiar;
@@ -65,16 +63,9 @@ void liczba::cofnij() {
 }
 
 void liczba::printl() {
-    if(rozmiar == 0)
+    for(int i = 0; i < min(rozmiar, l); i++)
     {
-        cout << "nie ma historii";
-    }
-    else
-    {
-        for(int i = 0; i < min(rozmiar, l); i++)
-        {
-            cout << lista[(l + index - i)%l] << " ";
-        }
+        cout << lista[(l + index - i)%l] << " ";
     }
     cout << endl;
 }
