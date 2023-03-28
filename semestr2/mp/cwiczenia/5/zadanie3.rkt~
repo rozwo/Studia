@@ -1,0 +1,25 @@
+#lang plait
+
+;(( curry compose ) ( curry compose ) )
+;This procedure applies the curry function to compose,
+;which returns a new function that takes a single argument x and returns a new function that composes the two functions passed as arguments to curry.
+;When we apply this new function to (curry compose), we get a new function that takes a single argument x and returns a function that composes the two functions passed to (curry compose).
+;Therefore, the type of this procedure is (((('a -> 'b) -> ('c -> 'a)) -> ('c -> 'b)) -> ('c -> 'b)).
+
+;(( curry compose ) ( curry apply ) )
+;This procedure applies the curry function to compose,
+;which returns a new function that takes a single argument x and returns a new function that composes the two functions passed as arguments to curry.
+;When we apply this new function to (curry apply), we get a new function that takes a single argument x and returns a function that applies the function passed
+;to (curry apply) to the result of applying the other function passed to (curry apply) to x.
+;Therefore, the type of this procedure is (((('a -> 'b) -> ('c -> 'd)) -> ('c -> 'a)) -> ('c -> 'd)).
+
+;(( curry apply ) ( curry compose ) )
+;This procedure applies the curry function to apply, which returns a new function that takes a single argument x and
+;returns a new function that applies the function passed as the second argument to apply to x, where the function itself is passed as the first argument to apply.
+;When we apply this new function to (curry compose), we get a new function that takes a single argument x and returns the result of applying the result of applying (curry compose) to x to x.
+;Therefore, the type of this procedure is ((('a -> 'b) -> (('c -> 'a) -> 'b)) -> ('c -> 'a)).
+
+;( compose curry flip )
+;This procedure applies compose to curry and flip, which returns a new function that takes a single argument x and returns a function that takes a single argument y
+;and applies flip to the result of applying curry to x and y.
+;Therefore, the type of this procedure is (('a -> 'b -> 'c) -> ('b -> 'a -> 'c)) -> ('a -> 'b -> 'c).

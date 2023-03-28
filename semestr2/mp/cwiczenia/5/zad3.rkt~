@@ -1,0 +1,25 @@
+#lang plait
+
+;(( curry compose ) ( curry compose ) )
+;Ta procedura stosuje funkcję curry do compose,
+;która zwraca nową funkcję, która przyjmuje pojedynczy argument x i zwraca nową funkcję, która składa się z dwóch funkcji przekazanych jako argumenty do curry.
+;Kiedy zastosujemy tę nową funkcję do (curry compose), otrzymamy nową funkcję, która pobiera pojedynczy argument x i zwraca funkcję, która składa się z dwóch funkcji przekazanych do (curry compose).
+;Dlatego rodzaj tej procedury jest (((('a -> 'b) -> ('c -> 'a)) -> ('c -> 'b)) -> ('c -> 'b)).
+
+;(( curry compose ) ( curry apply ) )
+;Ta procedura stosuje funkcję curry do compose,
+;która zwraca nową funkcję, która przyjmuje pojedynczy argument x i zwraca nową funkcję, która składa się z dwóch funkcji przekazanych jako argumenty do curry.
+;Kiedy zastosujemy tę nową funkcję do (curry apply), otrzymamy nową funkcję, która przyjmuje pojedynczy argument x i zwraca funkcję, która stosuje przekazaną funkcję
+;to (curry apply) do wyniku zastosowania drugiej funkcji przekazanej do (curry apply) do x.
+;Dlatego rodzaj tej procedury jest (((('a -> 'b) -> ('c -> 'd)) -> ('c -> 'a)) -> ('c -> 'd)).
+
+;(( curry apply ) ( curry compose ) )
+;Ta procedura stosuje funkcję curry do apply, która zwraca nową funkcję przyjmującą jeden argument x i zwraca nową funkcję,
+;która stosuje funkcję przekazaną jako drugi argument do zastosowania do x, gdzie sama funkcja jest przekazywana jako pierwszy argument do apply.
+;Kiedy zastosujemy tę nową funkcję do (curry compose), otrzymamy nową funkcję, która przyjmuje pojedynczy argument x i zwraca wynik apply wyniku apply (curry compose) do x do x.
+;Dlatego rodzaj tej procedury jest((('a -> 'b) -> (('c -> 'a) -> 'b)) -> ('c -> 'a)).
+
+;( compose curry flip )
+;Ta procedura ma compose do tworzenia funkcji curry i flip, która zwraca nową funkcję, która przyjmuje jeden argument x i zwraca funkcję, która przyjmuje jeden argument y
+;i stosuje odwrócenie do wyniku zastosowania curry do x i y.
+;Dlatego rodzaj tej procedury jest (('a -> 'b -> 'c) -> ('b -> 'a -> 'c)) -> ('a -> 'b -> 'c).

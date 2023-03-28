@@ -1,0 +1,19 @@
+#lang plait
+
+(define (flatmap f lst)
+  (foldl (lambda (x acc) (append (f x) acc)) '() lst))
+
+(define (remove x lst)
+  (filter (lambda (y) (not (eq? x y))) lst))
+
+(define (perms lst)
+  (if (empty? lst)
+      (list '())
+      (flatmap (lambda (x)
+                 (map (lambda (p) (cons x p))
+                      (perms (remove x lst))))
+               lst)))
+
+(define test-list '(1 2 3))
+(perms test-list)
+
