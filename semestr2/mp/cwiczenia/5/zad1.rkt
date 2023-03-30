@@ -24,49 +24,8 @@
   (lambda (x) (values (f x) (g x))))
 
 ;(('a -> (Optionof ('a * 'b))) 'a -> (Listof 'b))
-(define (f5 f a)
-  (list (snd (some-v (f (fst (some-v (f a))))))))
-
-;f : 'a -> 'b
-;(list (snd (some-v (f (fst (some-v (f a)))))))
-;(list (snd (some-v (f (fst 'a)))))
-
-
-;none : (-> (Optionof 'a))
-;some : ('a -> (Optionof 'a))
-;some-v : ((Optionof 'a) -> 'a)
-;none? : ((Optionof 'a) -> bool)
-;some? : ((Optionof 'a) -> bool)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#;(define (f5 f a)
+  (list (snd (some-v (f (fst (some-v (f a)))))))) ;nie dziala dla none
 
 #;(define (f5v2 f a)
   (type-case (Optionof 'a) (f a)
@@ -75,3 +34,5 @@
      (if (some? (f (fst n)))
          (list (snd n))
          '()))))
+
+
