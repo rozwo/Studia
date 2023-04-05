@@ -102,19 +102,48 @@
 
 (define (table-rename col ncol tab)
   (define (it s acc)
-    (cond [(equal? (column-info-name (car s)) col)
-           (append acc (list (column-info ncol (column-info-type (car s)))) (cdr s))]
-          [else (it (cdr s) (append acc (car s)))]))
+    (if (equal? (column-info-name (car s)) col)
+        (append acc (list (column-info ncol (column-info-type (car s)))) (cdr s))
+        (it (cdr s) (append acc (car s)))))
   (table (it (table-schema tab) '())
          (table-rows tab))
   )
 
 ; Sortowanie
-
+;s to (table-schema tab)
 (define (table-sort cols tab)
-  ;; uzupełnij
-  #f
+  (define (elem-cols s w c) ;wyciaganie z wiersza elementu z przeszukiwanej kolumny
+    (if (equal? (column-info-name (car s)) c)
+        (car w)
+        (elem-cols (cdr s) (cdr w) c)))
+  (define (min wx wy c) ;co jest mniejsze w zaleznosci od tego jakiego jest typu
+    (define x (elem-cols wx (car c)))
+    (define y (elem-cols wy (car c)))
+    (cond [(string? x) (cond [(and (string=? y x) (null? (cdr c))) wx]
+                             [(string=? y x) (min wx wy (cdr c))]
+                             [(string<? y x) wy]
+                             [else wx])]
+          [(number? x) (cond [(and (= x y) (null? (cdr c))) wx]
+                             [(= x y) (min wx wy (cdr c))]
+                             [(> x y) wy]
+                             [else wx])]
+          [(boolean? x) (cond [(and (= x y) (null? (cdr c))) wx]
+                              [(= x y) (min wx wy (cdr c))]
+                              [(and (= x #f) (= y #t)) wy]
+                              [else wx])]))
+  (define (minimum t w c) ;szuka wiersza z mnajmniejsza wartoscia w przeszukiwanej kolumnie
+    (if (null? t)
+        w
+        (minimum (cdr t) (min w (car t) c))))
+  (define (wyt w t) ;wycina podany wiersz z listy
+    (if (equal? w (car t))
+        (cdr t)
+        (cons (car t) (wyt w (cdr t)))))
+  (define (it t acc) ;szukam wiersza z minimum w tabeli, potem szukam kolejnego minimum w tym co w tabeli zostalo itd az tabela sie skonczy, jednoczesnie sklejam minima
+    (define m (minimum (cdr t) (car t) cols))
+    (if (null? t)
+        acc
+        (it (wyt (append acc m) t) (append acc m))))
+  (it tab '())
   )
-
-
-
+;XDDDDD co ci tu nie dziala glupi racketcie?!?!?!

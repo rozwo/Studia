@@ -111,9 +111,9 @@
 
 (define (table-rename col ncol tab)
   (define (it s acc)
-    (cond [(equal? (column-info-name (car s)) col)
-           (append acc (list (column-info ncol (column-info-type (car s)))) (cdr s))]
-          [else (it (cdr s) (append acc (car s)))]))
+    (if (equal? (column-info-name (car s)) col)
+        (append acc (list (column-info ncol (column-info-type (car s)))) (cdr s))
+        (it (cdr s) (append acc (car s)))))
   (table (it (table-schema tab) '())
          (table-rows tab))
   )
