@@ -1,4 +1,4 @@
-#lang racket
+#lang racket 
 
 (provide (struct-out column-info)
          (struct-out table)
@@ -10,11 +10,12 @@
          (struct-out lt-f)
          table-insert
          table-project
-         table-sort
-         table-select
+       ;  table-sort
+      ;   table-select
          table-rename
-         table-cross-join
-         table-natural-join)
+    ;     table-cross-join
+   ;      table-natural-join
+         )
 
 (define-struct column-info (name type) #:transparent)
 
@@ -50,8 +51,6 @@
 (define (table-insert row tab)
   (define (it r s)
     (cond [(and (null? r) (null? s)) #t]
-          [(null? s) #f]
-          [(null? r) #f]
           [(equal?  (column-info-type (car s))
                     (cond [(string? (car r)) 'string]
                           [(number? (car r)) 'number]
@@ -60,12 +59,14 @@
            (it (cdr r) (cdr s))]
           [else #f]))
   (if (it row (table-schema tab))
-      (table (table-schema tab) (append (list row) (table-rows tab)))
+      (cons row tab)
       "error")
   ;;lece po kolei kolumnami i sprawdzam czy sa tego typu co te co dostalam i czy jest ich tyle ile chce
   ;;jesli tak to dodaje row do reszty (cons row tab)?
   ;;jak nie to wyrzuc error
   )
+
+
 ;(cons row tab)
 ;(car (table-rows tab))
 ;(column-info-type (car (table-schema t)))
@@ -86,12 +87,6 @@
          (it-r (table-rows tab)))
   )
 
-; Sortowanie
-
-(define (table-sort cols tab)
-  ;; uzupełnij
-  #f
-  )
 
 ; Selekcja
 
@@ -102,10 +97,6 @@
 (define-struct eq2-f (name name2))
 (define-struct lt-f (name val))
 
-(define (table-select form tab)
-  ;; uzupełnij
-  #f
-  )
 
 ; Zmiana nazwy
 
@@ -118,17 +109,12 @@
          (table-rows tab))
   )
 
-; Złączenie kartezjańskie
+; Sortowanie
 
-(define (table-cross-join tab1 tab2)
+(define (table-sort cols tab)
   ;; uzupełnij
   #f
   )
 
-; Złączenie
 
-(define (table-natural-join tab1 tab2)
-  ;; uzupełnij
-  #f
-  )
 
