@@ -1,0 +1,19 @@
+#lang racket
+
+(define-struct leaf () #:transparent)
+(define-struct node (l elem r) #:transparent)
+(define-struct node2 (l e m e2 r) #:transparent)
+
+; drzewo to:
+; - albo (leaf)
+; - albo (node l elem r), gdzie l i r to drzewa
+; - albo (node l e m e2 r), gdzie l, m i r to drzewa
+
+(define (tree? x)
+  (cond [(leaf? x) #t]
+        [(node? x) (and (tree? (node-l x))
+                        (tree? (node-r x)))]
+        [(node2? x) (and (tree? (node2-l x))
+                         (tree? (node2-m x))
+                         (tree? (node2-r x)))]
+        [else #f]))

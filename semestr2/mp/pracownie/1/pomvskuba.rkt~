@@ -34,23 +34,6 @@
          (list "Paris"   "France"  105 #t)
          (list "Rennes"  "France"   50 #f))))
 
-#;(define cities2
-  (table
-   (list (column-info 'city    'string)
-         (column-info 'country 'string)
-         (column-info 'area    'number)
-         (column-info 'capital 'boolean))
-   (list (list "Wrocław" "Poland"  693 #f)
-         (list "Wrocław" "Poland"  193 #f)
-         (list "Wrocław" "Wrocław"  293 #f)
-         (list "Warsaw" "Warsaw"  293 #f)
-         (list "Warsaw"  "Poland"  517 #t)
-         (list "Poznań"  "Poland"  262 #f)
-         (list "Berlin"  "Germany" 892 #t)
-         (list "Munich"  "Germany" 310 #f)
-         (list "Paris"   "France"  105 #t)
-         (list "Rennes"  "France"   50 #f))))
-
 (define countries
   (table
    (list (column-info 'country 'string)
@@ -73,13 +56,12 @@
                     (cond [(string? (car r)) 'string]
                           [(number? (car r)) 'number]
                           [(boolean? (car r)) 'boolean]
-                          [(symbol? (car r)) 'symbol]
                           [else #f]))
            (it (cdr r) (cdr s))]
           [else #f]))
   (if (it row (table-schema tab))
       (table (table-schema tab) (append (list row) (table-rows tab)))
-      (error "error"))
+      "error")
   ;;lece po kolei kolumnami i sprawdzam czy sa tego typu co te co dostalam i czy jest ich tyle ile chce
   ;;jesli tak to dodaje row do reszty (cons row tab)?
   ;;jak nie to wyrzuc error
@@ -90,31 +72,11 @@
 
 ; Projekcja
 
-(define (line s acc)
-  (if (null? s)
-      acc
-      (line (cdr s) (append acc (list (column-info-name (car s)))))))
-
-(define (good-line s c acc)
-  (define (it v t)
-    (cond [(null? t) #f]
-          [(equal? (car t) v) #t]
-          [else (it v (cdr t))]))
-  (cond [(null? s) acc]
-        [(it (car s) c) (good-line (cdr s) c (append acc (list (car s))))]
-        [else (good-line (cdr s) c acc)]))
-
-(define (good schem c)
-  (good-line (line schem '()) c '()))
-
 (define (table-project cols tab)
-
-  (define colss (good (table-schema tab) cols)) ;gdyby cols sa nie po kolei to robie colss
-                                                         ;i wtedy pomijam kolumny ktorych nazwy sa podane w cols
-                                                                                       ;ale nie ma ich w tablicy
   
   (define (it c s acc t)
     (cond [(null? c) acc]
+          [(null? s) acc]
           [(null? (cdr c)) (if (equal? (column-info-name (car s)) (car c))
                                (append acc (list (car t)))
                                (it c (cdr s) acc (cdr t)))]
@@ -124,15 +86,12 @@
   
   (define (it-r t) ;bo potrzebuje to zrobic dla wszystkich wierszy
     (cond [(null? t) null]
-          [(null? (cdr t)) (cons (it colss (table-schema tab) '() (car t)) null)]
-          [else (cons (it colss (table-schema tab) '() (car t)) (it-r (cdr t)))]))
+          [(null? (cdr t)) (it cols (table-schema tab) '() (car t))]
+          [else (cons (it cols (table-schema tab) '() (car t)) (it-r (cdr t)))]))
   
-  (table (it colss (table-schema tab) '() (table-schema tab))
+  (table (it cols (table-schema tab) '() (table-schema tab))
          (it-r (table-rows tab)))
   )
-
-;testy
-;(table-project '(city country) cities)
 
 ; Sortowanie
 
@@ -223,18 +182,10 @@
 (define (table-select form tab)
   (define (it t acc)
     (cond [(null? t) acc]
-          [(spelnia form (car t) (table-schema tab)) (it (cdr t) (append acc (list (car t))))]
+          [(spelnia form (car t) (table-schema tab)) (it (cdr t) (append acc (car t)))]
           [else (it (cdr t) acc)]))
   (table (table-schema tab) (it (table-rows tab) '()))
   )
-
-;test
-;(table-select (eq2-f 'city 'country) cities2)
-;(table-select (and-f (or-f (not-f (lt-f 'area 600)) (eq2-f 'city 'country)) (or-f (eq-f 'city "Wrocław") (eq-f 'city "Berlin"))) cities2)
-   #;(list (list "Wrocław" "Poland"  693 #f)
-         (list "Wrocław" "Wrocław"  293 #f)
-         (list "Berlin"  "Germany" 892 #t))
-
 
 ; Zmiana nazwy
 
@@ -242,15 +193,10 @@
   (define (it s acc)
     (if (equal? (column-info-name (car s)) col)
         (append acc (list (column-info ncol (column-info-type (car s)))) (cdr s))
-        (it (cdr s) (append acc (list (car s))))))
-  (if (null? tab)
-      tab
-      (table (it (table-schema tab) '())
-             (table-rows tab)))
+        (it (cdr s) (append acc (car s)))))
+  (table (it (table-schema tab) '())
+         (table-rows tab))
   )
-
-;test
-;(table-rename 'capital 'visited cities)
 
 ; Złączenie kartezjańskie
 
@@ -312,9 +258,28 @@
   (define l (same (table-schema tab1) (table-schema tab2)))
   (table-project (append (get-names (table-schema tab1) '()) (get-names (inne l (table-schema tab2) '() l) '()))
                  (t-s l (table-cross-join tab1 (t-r l tab2))))
-  ;'() ;cos sie robi za dlugo wiec sprawdze czy to moze nie ta funkcja
   )
 
 ;test
-;(table-natural-join cities countries)
-;(table-natural-join countries cities)
+(table-natural-join cities countries)
+
+;(same (table-schema cities) (table-schema countries))
+#|
+(append
+ (get-names
+  (table-schema cities) '())
+ (get-names
+  (inne (same (table-schema cities) (table-schema countries)) (table-schema countries) '() (same (table-schema cities) (table-schema countries))) '())
+)
+|#
+;ten test wyrzuca taki blad
+;  cdr: contract violation
+;     expected: pair?
+;     given: "Wrocław"
+;ale nie umiem poprawic table-project tak zeby dzialalo...
+;przez co nawet nwm czy tylko w tym tkwi problem...
+;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+;mam dosc! niby mam wszystko a mam tylko 2/13 testow dobrze
+;czyli jest tak jakbym nie miala nic!
+;i nawet nie wiem co jest zle!!!!!!!!!!!!!
+;w dodatku mam 2% i 5% wiec zaraz mi sie wylaczy komputer!!! zycie mnie mnie
