@@ -1,0 +1,10 @@
+#lang plait
+
+(define-type MyRacket
+  (r-variable [x : Symbol])
+  (r-num [n : Number])
+  (r-lambda [var : (Listof MyRacket)] [exp : MyRacket])
+  (r-func [f : Symbol] [var : (Listof MyRacket)])
+  (r-let [l : (Listof (MyRacket * MyRacket))] [exp : MyRacket])
+  (r-if [con : MyRacket] [t : MyRacket] [f : MyRacket])
+  (r-cond [cs : (Listof (MyRacket * MyRacket))]))

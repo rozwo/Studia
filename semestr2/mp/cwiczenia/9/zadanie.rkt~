@@ -1,0 +1,41 @@
+#lang racket
+
+;tworzymy mutowalna strukture
+(struct mqueue
+  ([front #:mutable]
+   [back  #:mutable]))
+
+;umawiamy sie ze pusta kolejka ma null z przodu i z tylu
+(define (mqueue-empty? q)
+  (and (null? (mqueue-front q))
+       (null? (mqueue-back  q))))
+
+;tworzymy pusta kolejke
+(define (make-mqueue)
+  (mqueue null null))
+
+;zadanie 1
+;zdefiniuj procedurę cycle!, która zapętla listę mutowalną,
+;czyli przepina wskaźnik ogona ostatniego elementu na początek listy
+
+#;(define (cycle! xs)
+  ())
+
+
+
+; zamiana zwykłej listy na cykl złożony z mconsów,
+; czyli ostatni element wskazuje na pierwszy.
+
+#;(define (make-cycle xs)
+  (define (last-pair xs)
+    (if (null? (mcdr xs))
+        xs
+        (last-pair (mcdr xs))))
+  (define (change-ptr xs)
+    (set-mcdr! (last-pair xs) xs)
+    xs)
+  (define (helper xs)
+    (if (null? xs)
+        null
+        (mcons (car xs) (helper (cdr xs)))))
+  (change-ptr (helper xs)))

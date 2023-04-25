@@ -1,17 +1,7 @@
 #lang plait
 
-;Zrobmy sobie kalkulator
-
-;parsowanie = zamiana skladni konkretnej na abstrakcyjna
-
-; ==============================================
-;skladnia:
-
 (define-type Op
-  (op-add)
-  (op-mul)
-  (op-sub)
-  (op-div))
+  (op-add) (op-mul) (op-sub) (op-div))
 
 (define-type Exp
   (exp-number [n : Number])
@@ -35,7 +25,6 @@
                (parse-Exp (third  xs))))]))
 
 ; ==============================================
-;semantyka:
 
 (define (eval-op op)
   (type-case Op op
@@ -46,9 +35,6 @@
 
 (define (eval e)
   (type-case Exp e
-    [(exp-number n) n]
+    [(exp-number n)    n]
     [(exp-op op e1 e2)
      ((eval-op op) (eval e1) (eval e2))]))
-
-
-;(eval (parse-Exp `(* 2 (+ 2 2))))

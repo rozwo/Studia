@@ -1,9 +1,4 @@
 #lang plait
-
-;Zrobmy sobie kalkulator
-
-;parsowanie = zamiana skladni konkretnej na abstrakcyjna
-
 ; ==============================================
 ;skladnia:
 

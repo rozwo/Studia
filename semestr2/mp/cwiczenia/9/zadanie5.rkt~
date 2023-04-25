@@ -1,8 +1,9 @@
 #lang plait
 
-;Zrobmy sobie kalkulator
-
-;parsowanie = zamiana skladni konkretnej na abstrakcyjna
+;zadanie 5
+;rozszerz kalkulator z wykładu o operacje potęgowania, silni i liczby przeciwnej
+;W tym celu najpierw uzupełnij składnię abstrakcyjną i interpreter,
+;a następnie rozbuduj parser, tak aby obsługiwał nowe konstrukcje
 
 ; ==============================================
 ;skladnia:
