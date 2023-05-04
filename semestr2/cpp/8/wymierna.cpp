@@ -5,8 +5,8 @@ Wymierna::Wymierna(int l, int m)
 {
   if(m == 0) //mianownik zawsze był > 0
   {
-    throw "Pamietaj cholero: nie dziel przez zero!";
-    // throw NieDzielPrzezZero("Nie dziel przez zero");
+    throw "dzielenie przez 0";
+    // throw dzielenie_przez_0("dzielenie przez 0");
   }
   if(m < 0)
   {
@@ -49,6 +49,11 @@ void Wymierna::Skroc()
     a = this->licz;
   }
   a = NWD(a,this->mian); //bo nwd licze na nieujemnych
+  if(a > INT_MAX)
+  {
+    throw "przekroczenie zakresu";
+    // throw przekroczenie_zakresu("przekroczenie zakresu");
+  }
   this->licz /= a;
   this->mian /= a;
 }
@@ -60,12 +65,50 @@ Wymierna::Wymierna(int x)
   Skroc();
 }
 
+int Wymierna::NWW(int a, int b) //najm wsp wiel
+{
+  int c = NWD(a,b);
+  return a/c * b;
+}
+
+Wymierna & Wymierna::operator + (const Wymierna & w1)
+{
+  int nowy_mian = NWW(this->mian,w1.get_m());
+  int nowy_licz = this->licz * (nowy_mian/this->mian) + w1.get_l() * (nowy_mian/w1.get_m());
+  int nwd = NWD(nowy_licz,nowy_mian);
+  if(nowy_licz/nwd > INT_MAX || nowy_mian/nwd > INT_MAX)
+  {
+    throw "przekroczenie zakresu";
+    // throw przekroczenie_zakresu("przekroczenie zakresu");
+  }
+  int l = nowy_licz / nwd;
+  int m = nowy_mian / nwd;
+  Wymierna w2(l,m);
+  return w2;
+}
+
+Wymierna & Wymierna::operator - (const Wymierna & w1)
+{
+  int nowy_mian = NWW(this->mian,w1.get_m());
+  int nowy_licz = this->licz * (nowy_mian/this->mian) - w1.get_l() * (nowy_mian/w1.get_m());
+  int nwd = NWD(nowy_licz,nowy_mian);
+  if(nowy_licz/nwd > INT_MAX || nowy_mian/nwd > INT_MAX)
+  {
+    throw "przekroczenie zakresu";
+    // throw przekroczenie_zakresu("przekroczenie zakresu");
+  }
+  int l = nowy_licz / nwd;
+  int m = nowy_mian / nwd;
+  Wymierna w2(l,m);
+  return w2;
+}
+
 Wymierna & Wymierna::operator * (const Wymierna & w1)
 {
   if(this->licz * w1.get_l() > INT_MAX || this->mian * w1.get_m() > INT_MAX)
   {
-    throw "Przekroczono zakres inta";
-    // throw PrzekroczonoZakres("Przekroczono zakres inta");
+    throw "przekroczenie zakresu";
+    // throw przekroczenie_zakresu("przekroczenie zakresu");
   }
   int l = this->licz * w1.get_l();
   int m = this->mian * w1.get_m();
@@ -77,13 +120,13 @@ Wymierna & Wymierna::operator / (const Wymierna & w1)
 {
   if(this->licz * w1.get_m() > INT_MAX || this->mian * w1.get_l() > INT_MAX)
   {
-    throw "Przekroczono zakres inta";
-    // throw PrzekroczonoZakres("Przekroczono zakres inta");
+    throw "przekroczenie zakresu";
+    // throw przekroczenie_zakresu("przekroczenie zakresu");
   }
   if(w1.get_l() == 0)
   {
-    throw "Pamietaj cholero: nie dziel przez zero!";
-    // throw NieDzielPrzezZero("Nie dziel przez zero");
+    throw "przekroczenie zakresu";
+    // throw przekroczenie_zakresu("przekroczenie zakresu");
   }
   int l = this->licz * w1.get_m();
   int m = this->mian * w1.get_l();
@@ -95,8 +138,8 @@ Wymierna Wymierna::operator ! () //odwrotna
 {
   if(this->licz == 0)
   {
-    throw "Pamietaj cholero: nie dziel przez zero!";
-    // throw NieDzielPrzezZero("Nie dziel przez zero");
+    throw "przekroczenie zakresu";
+    // throw przekroczenie_zakresu("przekroczenie zakresu");
   }
   if(this->licz < 0)
   {
@@ -127,4 +170,27 @@ Wymierna::operator double() //operator rzutowania na typ double
 Wymierna::operator int() //operator jawnego rzutowania na typ int
 {
   return this->licz/this->mian;
+}
+
+
+//wyjatki
+
+// dzielenie_przez_0::dzielenie_przez_0(const string t)
+// {
+//   tekst = t;
+// }
+
+const string dzielenie_przez_0::zapis()
+{
+  return tekst.c_str();
+}
+
+// przekroczenie_zakresu::przekroczenie_zakresu(const string t)
+// {
+//   tekst = t;
+// }
+
+const string przekroczenie_zakresu::zapis()
+{
+  return tekst.c_str();
 }
