@@ -75,7 +75,16 @@ Wymierna & Wymierna::operator + (const Wymierna & w1)
 {
   int nowy_mian = NWW(this->mian,w1.get_m());
   int nowy_licz = this->licz * (nowy_mian/this->mian) + w1.get_l() * (nowy_mian/w1.get_m());
-  int nwd = NWD(nowy_licz,nowy_mian);
+  int a;
+  if(nowy_licz < 0)
+  {
+    a = -nowy_licz;
+  }
+  else
+  {
+    a = nowy_licz;
+  }
+  int nwd = NWD(a,nowy_mian);
   if(nowy_licz/nwd > INT_MAX || nowy_mian/nwd > INT_MAX)
   {
     throw "przekroczenie zakresu";
@@ -91,7 +100,16 @@ Wymierna & Wymierna::operator - (const Wymierna & w1)
 {
   int nowy_mian = NWW(this->mian,w1.get_m());
   int nowy_licz = this->licz * (nowy_mian/this->mian) - w1.get_l() * (nowy_mian/w1.get_m());
-  int nwd = NWD(nowy_licz,nowy_mian);
+  int a;
+  if(nowy_licz < 0)
+  {
+    a = -nowy_licz;
+  }
+  else
+  {
+    a = nowy_licz;
+  }
+  int nwd = NWD(a,nowy_mian);
   if(nowy_licz/nwd > INT_MAX || nowy_mian/nwd > INT_MAX)
   {
     throw "przekroczenie zakresu";

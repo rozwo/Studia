@@ -1,3 +1,27 @@
+Do napisania jeszcze:
+
+konstruktor domyślny, ustawiający wartość liczby wymiernej na zero (czyli ułamek 0/1)
+friend ostream & operator << (ostream & wy, const Wymierna & x);
+
+..........................................................................................................
+Wymierna & operator + (const Wymierna &); //nwm czemu tu musi byc & ale bez niego sa bledy...
+
+
+i jak one wgl dzialaja?
+
+operator double();
+explicit operator int(); //czemu explicit
+
+
+
+czy to potrzebne?
+
+// dzielenie_przez_0(const dzielenie_przez_0 &c) = default;
+// dzielenie_przez_0 & operator = (const dzielenie_przez_0 &tb) = default;
+
+// przekroczenie_zakresu(const przekroczenie_zakresu &c) = default;
+// przekroczenie_zakresu & operator = (const przekroczenie_zakresu &tb) = default;
+
 // operator strumieniowy ale XDDDDDDDDDDDDD co tu sie dzieje?!!!!
 
 // namespace obliczenia
