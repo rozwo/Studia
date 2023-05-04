@@ -19,7 +19,7 @@ namespace obliczenia
     int get_l() const {return licz;};
     int get_m() const {return mian;};
 
-    // friend ostream & operator << (ostream & wy, const Wymierna & x);
+    friend ostream & operator << (ostream & wy, const Wymierna & x);
 
     //operatory
     Wymierna operator + (const Wymierna &);
@@ -29,36 +29,29 @@ namespace obliczenia
     Wymierna operator - (); //przeciwna
     Wymierna operator ! (); //odwrotna
 
-    operator double(); //operator rzutowania na typ double
+    explicit operator double(); //operator rzutowania na typ double
     explicit operator int(); //operator jawnego rzutowania na typ int
-    //z wykładu "Przy operatorach konwersji można użyć słowa kluczowego explicit aby uniknąć konwersji niejawnej."
+    //z wykładu: "Przy operatorach konwersji można użyć słowa kluczowego explicit aby uniknąć konwersji niejawnej."
   };
 }
 
 //wyjatki
-
-class wyjatek_wymierny : public logic_error
+class wyjatek_wymierny : public exception //logic_error nie dziala ale nwm dlaczego
 {
-  protected:
-    string tekst;
-  public:
-    wyjatek_wymierny() = default;
+    const string tekst;
+public:
+    explicit wyjatek_wymierny(const string zapis) : tekst(zapis) {};
+    virtual string zapis() const noexcept  { return tekst; };
 };
 
 class dzielenie_przez_0 : public wyjatek_wymierny
 {
-  public:
-    // dzielenie_przez_0() = default;
-    dzielenie_przez_0(const string t);
-    virtual const string zapis();
-    // virtual ~dzielenie_przez_0() = default;
+public:
+    explicit dzielenie_przez_0(const string zapis) : wyjatek_wymierny(zapis) {};
 };
 
 class przekroczenie_zakresu : public wyjatek_wymierny
 {
-  public:
-    // przekroczenie_zakresu() = default;
-    przekroczenie_zakresu(const string t);
-    virtual const string zapis();
-    // virtual ~przekroczenie_zakresu() = default;
+public:
+    explicit przekroczenie_zakresu(const string zapis) : wyjatek_wymierny(zapis) {};
 };
