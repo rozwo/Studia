@@ -5,7 +5,7 @@ Wymierna::Wymierna(int l, int m)
 {
   if(m == 0) //mianownik zawsze był > 0
   {
-    throw "dzielenie przez 0";
+    throw "dzielenie_przez_0";
     // throw dzielenie_przez_0("dzielenie przez 0");
   }
   if(m < 0)
@@ -39,15 +39,7 @@ int Wymierna::NWD(int a, int b) //najw wsp dziel
 
 void Wymierna::Skroc()
 {
-  int a;
-  if(this->licz < 0)
-  {
-    a = -this->licz;
-  }
-  else
-  {
-    a = this->licz;
-  }
+  int a = abs(this->licz);
   a = NWD(a,this->mian); //bo nwd licze na nieujemnych
   if(a > INT_MAX)
   {
@@ -65,26 +57,23 @@ Wymierna::Wymierna(int x)
   Skroc();
 }
 
+Wymierna::Wymierna()
+{
+  licz = 0;
+  mian = 1;
+}
+
 int Wymierna::NWW(int a, int b) //najm wsp wiel
 {
   int c = NWD(a,b);
   return a/c * b;
 }
 
-Wymierna & Wymierna::operator + (const Wymierna & w1)
+Wymierna Wymierna::operator + (const Wymierna & w1)
 {
   int nowy_mian = NWW(this->mian,w1.get_m());
   int nowy_licz = this->licz * (nowy_mian/this->mian) + w1.get_l() * (nowy_mian/w1.get_m());
-  int a;
-  if(nowy_licz < 0)
-  {
-    a = -nowy_licz;
-  }
-  else
-  {
-    a = nowy_licz;
-  }
-  int nwd = NWD(a,nowy_mian);
+  int nwd = NWD(abs(nowy_licz),nowy_mian);
   if(nowy_licz/nwd > INT_MAX || nowy_mian/nwd > INT_MAX)
   {
     throw "przekroczenie zakresu";
@@ -96,20 +85,11 @@ Wymierna & Wymierna::operator + (const Wymierna & w1)
   return w2;
 }
 
-Wymierna & Wymierna::operator - (const Wymierna & w1)
+Wymierna Wymierna::operator - (const Wymierna & w1)
 {
   int nowy_mian = NWW(this->mian,w1.get_m());
   int nowy_licz = this->licz * (nowy_mian/this->mian) - w1.get_l() * (nowy_mian/w1.get_m());
-  int a;
-  if(nowy_licz < 0)
-  {
-    a = -nowy_licz;
-  }
-  else
-  {
-    a = nowy_licz;
-  }
-  int nwd = NWD(a,nowy_mian);
+  int nwd = NWD(abs(nowy_licz),nowy_mian);
   if(nowy_licz/nwd > INT_MAX || nowy_mian/nwd > INT_MAX)
   {
     throw "przekroczenie zakresu";
@@ -121,7 +101,7 @@ Wymierna & Wymierna::operator - (const Wymierna & w1)
   return w2;
 }
 
-Wymierna & Wymierna::operator * (const Wymierna & w1)
+Wymierna Wymierna::operator * (const Wymierna & w1)
 {
   if(this->licz * w1.get_l() > INT_MAX || this->mian * w1.get_m() > INT_MAX)
   {
@@ -134,7 +114,7 @@ Wymierna & Wymierna::operator * (const Wymierna & w1)
   return w2;
 }
 
-Wymierna & Wymierna::operator / (const Wymierna & w1)
+Wymierna Wymierna::operator / (const Wymierna & w1)
 {
   if(this->licz * w1.get_m() > INT_MAX || this->mian * w1.get_l() > INT_MAX)
   {
@@ -182,6 +162,7 @@ Wymierna Wymierna::operator - () //przeciwna
 
 Wymierna::operator double() //operator rzutowania na typ double
 {
+  //tu dodaj sobie te okresowosci
   return (double)this->licz/this->mian; //nwm czemu ale dziala XDDD
 }
 
