@@ -36,12 +36,12 @@ namespace obliczenia
 }
 
 //wyjatki
-class wyjatek_wymierny : public exception //logic_error nie dziala ale nwm dlaczego
+class wyjatek_wymierny : public logic_error
 {
-    const string tekst;
+    // const string tekst;
 public:
-    explicit wyjatek_wymierny(const string zapis) : tekst(zapis) {};
-    virtual string zapis() const noexcept  { return tekst; };
+    explicit wyjatek_wymierny(const string zapis) {};
+    // virtual string zapis() const noexcept  { return tekst; };
 };
 
 class dzielenie_przez_0 : public wyjatek_wymierny

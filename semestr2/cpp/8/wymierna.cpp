@@ -1,5 +1,7 @@
 #include "wymierna.hpp"
 
+wyjatek_wymierny::wyjatek_wymierny(string message) : logic_error(message) {};
+
 namespace obliczenia
 {
   Wymierna::Wymierna(int l, int m)
@@ -7,6 +9,10 @@ namespace obliczenia
     if(m == 0) //mianownik zawsze był > 0
     {
       throw dzielenie_przez_0("dzielenie przez 0");
+    }
+    if(abs(l) > INT_MAX || abs(m) > INT_MAX)
+    {
+      throw przekroczenie_zakresu("przekroczenie zakresu");
     }
     if(m < 0)
     {
@@ -40,17 +46,21 @@ namespace obliczenia
   void Wymierna::Skroc()
   {
     int a = abs(this->licz);
-    a = NWD(a,this->mian); //bo nwd licze na nieujemnych
-    if(a > INT_MAX)
+    if(a > INT_MAX || abs(this->mian) > INT_MAX)
     {
       throw przekroczenie_zakresu("przekroczenie zakresu");
     }
+    a = NWD(a,this->mian); //bo nwd licze na nieujemnych
     this->licz /= a;
     this->mian /= a;
   }
 
   Wymierna::Wymierna(int x)
   {
+    if(abs(x) > INT_MAX)
+    {
+      throw przekroczenie_zakresu("przekroczenie zakresu");
+    }
     licz = x;
     mian = 1;
     Skroc();
@@ -71,12 +81,14 @@ namespace obliczenia
   Wymierna Wymierna::operator + (const Wymierna & w1)
   {
     int nowy_mian = NWW(this->mian,w1.get_m());
-    int nowy_licz = this->licz * (nowy_mian/this->mian) + w1.get_l() * (nowy_mian/w1.get_m());
-    int nwd = NWD(abs(nowy_licz),nowy_mian);
-    if(nowy_licz/nwd > INT_MAX || nowy_mian/nwd > INT_MAX)
+    int a = this->licz * (nowy_mian/this->mian);
+    int b = w1.get_l() * (nowy_mian/w1.get_m());
+    if(b>0 && a > INT_MAX - b || b<0 && a < INT_MIN + b)
     {
       throw przekroczenie_zakresu("przekroczenie zakresu");
     }
+    int nowy_licz = a + b;
+    int nwd = NWD(abs(nowy_licz),nowy_mian);
     int l = nowy_licz / nwd;
     int m = nowy_mian / nwd;
     Wymierna w2(l,m);
@@ -86,12 +98,14 @@ namespace obliczenia
   Wymierna Wymierna::operator - (const Wymierna & w1)
   {
     int nowy_mian = NWW(this->mian,w1.get_m());
-    int nowy_licz = this->licz * (nowy_mian/this->mian) - w1.get_l() * (nowy_mian/w1.get_m());
-    int nwd = NWD(abs(nowy_licz),nowy_mian);
-    if(nowy_licz/nwd > INT_MAX || nowy_mian/nwd > INT_MAX)
+    int a = this->licz * (nowy_mian/this->mian);
+    int b = w1.get_l() * (nowy_mian/w1.get_m());
+    if(b<0 && a > INT_MAX - b || b>0 && a < INT_MIN + b)
     {
       throw przekroczenie_zakresu("przekroczenie zakresu");
     }
+    int nowy_licz = a - b;
+    int nwd = NWD(abs(nowy_licz),nowy_mian);
     int l = nowy_licz / nwd;
     int m = nowy_mian / nwd;
     Wymierna w2(l,m);
@@ -100,7 +114,8 @@ namespace obliczenia
 
   Wymierna Wymierna::operator * (const Wymierna & w1)
   {
-    if(this->licz * w1.get_l() > INT_MAX || this->mian * w1.get_m() > INT_MAX)
+    if((this->licz > 0 && w1.get_l() > 0 || this->licz < 0 && w1.get_l() < 0) && abs(this->licz) > INT_MAX / abs(w1.get_l()) ||
+       (this->licz < 0 && w1.get_l() > 0 || this->licz > 0 && w1.get_l() < 0) && abs(this->licz) * -1 < INT_MIN / abs(w1.get_l()))
     {
       throw przekroczenie_zakresu("przekroczenie zakresu");
     }
@@ -112,13 +127,13 @@ namespace obliczenia
 
   Wymierna Wymierna::operator / (const Wymierna & w1)
   {
-    if(this->licz * w1.get_m() > INT_MAX || this->mian * w1.get_l() > INT_MAX)
+    if(abs(this->licz) > INT_MAX / abs(w1.get_m()) || abs(this->mian) > INT_MAX / abs(w1.get_l()))
     {
       throw przekroczenie_zakresu("przekroczenie zakresu");
     }
     if(w1.get_l() == 0)
     {
-      throw przekroczenie_zakresu("przekroczenie zakresu");
+      throw dzielenie_przez_0("dzielenie przez 0");
     }
     int l = this->licz * w1.get_m();
     int m = this->mian * w1.get_l();
@@ -130,7 +145,7 @@ namespace obliczenia
   {
     if(this->licz == 0)
     {
-      throw przekroczenie_zakresu("przekroczenie zakresu");
+      throw dzielenie_przez_0("dzielenie przez 0");
     }
     if(this->licz < 0)
     {
@@ -155,7 +170,7 @@ namespace obliczenia
 
   Wymierna::operator double() //operator rzutowania na typ double
   {
-    return (double)this->licz/this->mian; //nwm czemu ale dziala XDDD
+    return (double)this->licz/this->mian;
   }
 
   Wymierna::operator int() //operator jawnego rzutowania na typ int
@@ -163,9 +178,74 @@ namespace obliczenia
     return this->licz/this->mian;
   }
 
-  ostream& operator << (ostream &wy, const Wymierna &w)
+  ostream& operator << (ostream &wyjscie, const Wymierna &w)
   {
-    //tu dodaj sobie te okresowosci
-    return wy << (double)w.licz/w.mian;
+    int mian = w.mian;
+    //mianownik rozklada się wylacznie na 2 lub 5
+    while (mian % 2 == 0)
+    {
+      mian /= 2;
+    }
+    while (mian % 5 == 0)
+    {
+      mian /= 5;
+    }
+
+    if (mian == 1) //skonczone
+    {
+      return wyjscie << (double)w.licz/w.mian;
+    }
+    else //nieskonczone okresowe
+    {
+        int l = w.licz;
+        int m = w.mian;
+
+        int calosci = l / m;
+        int reszta = l % m;
+        
+        wyjscie << calosci;
+
+        l -= calosci * m;
+        
+        vector<pair<char, int>> stany;
+        unsigned int pocz_powt = 0;
+
+        while(reszta)
+        {
+            reszta *= 10;
+            int r = reszta / m;
+            char cyfra = r + '0';
+            reszta = reszta - r * m;
+            auto acc = make_pair(cyfra, reszta);
+            stany.push_back(acc);
+
+            for (unsigned int i = 0; i < stany.size() - 1; i++)
+            {
+                if (acc == stany[i])
+                {
+                    pocz_powt = i;
+                    reszta = 0;
+                    stany.pop_back();
+                    break;
+                }
+            }
+        }
+
+        wyjscie << ".";
+        unsigned int i = 0;
+
+        for (auto& stan : stany)
+        {
+            if (i == pocz_powt)
+            {
+              wyjscie << "(";
+            }
+            wyjscie << stan.first;
+            i++;
+        }
+
+        wyjscie << ")";
+        return wyjscie;
+    }
   }
 }
