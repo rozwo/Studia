@@ -1,7 +1,7 @@
 #### STUDIA
 
 #### SEM 1
-Analiza matematyczna  
+Analiza matematyczna
 Logika dla informatyków  
 Wstęp do informatyki  
 Kurs: Podstawowy warsztat informatyka  
@@ -9,7 +9,7 @@ Kurs: Wstęp do programowania w języku Python
                       
 
 #### SEM 2
-Metody programowania  
+Metody programowania
 Algebra  
 Programowanie obiektowe  
 Kurs języka C++  
