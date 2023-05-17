@@ -1,4 +1,4 @@
-#### Studia
+#### STUDIA
 
 #### SEM 1
 Analiza matematyczna
