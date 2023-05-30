@@ -38,10 +38,8 @@ namespace obliczenia
 //wyjatki
 class wyjatek_wymierny : public logic_error
 {
-    // const string tekst;
 public:
-    explicit wyjatek_wymierny(const string zapis) {};
-    // virtual string zapis() const noexcept  { return tekst; };
+    explicit wyjatek_wymierny(const string zapis) : zapis(what) {};
 };
 
 class dzielenie_przez_0 : public wyjatek_wymierny
