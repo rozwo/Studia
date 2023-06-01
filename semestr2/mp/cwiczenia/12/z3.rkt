@@ -165,23 +165,23 @@
 
 
 ;to da nam 10 bo a jest 10 (przez najniższego leta)
-(run `{ let a 1
-         { let p { lambda {x} {+ x a }}
-            { let a 10
+(run `{let a 1
+         {let p {lambda {x} {+ x a}}
+            {let a 10
                {p 0}}}})
 
 ;zmiana nazw pierwszego a na a1
-(run `{ let a1 1
-         { let p { lambda {x} {+ x a1 }}
-            { let a 10
+(run `{let a1 1
+         {let p {lambda {x} {+ x a1}}
+            {let a 10
                {p 0}}}}) ;teraz to da nam 1
 
 
-(run `{ let fact { lambda {n}
-                    { if {= n 0}
+(run `{let fact {lambda {n}
+                    {if {= n 0}
                          1
-                         {* n { fact {- n 1}}}}}
-         { fact 5}})
+                         {* n {fact {- n 1}}}}}
+         {fact 5}})
 
 ;teraz każdy let to letrec, ponieważ z dynamicznym wiazaniem zmiennych mamy
 ;za każdym razem dostęp do poprzedniej wartości utworzonej na nowo zmiennej
