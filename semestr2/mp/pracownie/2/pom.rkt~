@@ -1,0 +1,19 @@
+#lang racket
+
+#;(define (update-simulation simulation time-to-remove)
+  (define action-queue (sim-action-queue simulation))
+  (if (action-queue-empty? action-queue)
+      (void)
+      (let ([first-event (action-queue-min action-queue)])
+        (if (<= (cdr first-event) time-to-remove)
+            (begin
+              (action-queue-remove action-queue)
+              (set-sim-current-time! simulation (cdr first-event))
+              ((car first-event))
+              (update-simulation simulation time-to-remove))
+            (void)))))
+#;(define (sim-wait! simulation time) ;wykonujesz akcje az czas bedzie jak czas poczatkowy + t
+  (begin
+    (let ([time-before (sim-time simulation)])
+      (update-simulation simulation (+ (sim-time simulation) time))
+      (set-sim-current-time! simulation (+ time-before time)))))

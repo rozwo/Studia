@@ -1,9 +1,7 @@
 #pragma once
-
 #include "operand.hpp"
 
 namespace kalkulator {
-    // klasa okreslajaca zwykla liczbe w dzialaniu
     class liczba : public operand {
         public:
             const double wartosc;

@@ -3,7 +3,6 @@
 using namespace std;
 using namespace kalkulator;
 
-// mapa zawierajaca stale
 map<string, double> stala::mapaStalych = {
             {"e", 2.718281828459},
             {"pi", 3.141592653589},
@@ -13,8 +12,7 @@ map<string, double> stala::mapaStalych = {
 // konstruktor z lista inicjalizacyjna
 stala::stala(string nazwa, double wartosc) : wartosc(wartosc), nazwa(nazwa) {}
 
-// ta metoda statyczna pobiera z mapy stalych wartosc dla danej nazwy
-double stala::pobierzStala(string nazwa) {
+double stala::pobierzStala(string nazwa) { // pobiera z mapy wartosc dla danej nazwy
     return stala::mapaStalych.at(nazwa);
 }
 

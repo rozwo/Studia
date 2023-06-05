@@ -1,28 +1,18 @@
 #pragma once
-
 #include <bits/stdc++.h>
 using namespace std;
 
-namespace kalkulator
-{
-    // klasa abstrakcyjna określająca symbole dostępne w kalkulatorze (operandy, funkcje)
-    class symbol
-    {
+namespace kalkulator {
+    class symbol {
         public:
             static double ostatecznyWynik();
 
             symbol() {};
             virtual ~symbol() {};
-            // metoda czysto wirtualna. Ma ona za zadanie wykonać działanie specyficzne dla danego symbolu
-            // np, odłożenie na stosie dla liczby czy pobranie elementów, wykonanie działania i odłożenie
-            // wyniku na stosie dla funkcji. Dzięki temu że jest wirtualna, będziemy mogli korzystać z faktu,
-            // że stos zawiera symbole i na każdym wywołamy tą samą funkcję, ale jej działanie będzie inne
-            virtual void wykonaj() = 0;
+            virtual void wykonaj() = 0; // metoda wirtualna
 
         protected:
-            // statyczny stos, na którym oparte jest działanie
-            // kalkulatora. Dostep protected, poniewaz klasy pochodne beda z niego korzystac
-            static stack<symbol*> stos;
+            static stack<symbol*> stos; // statyczny stos, na którym oparte jest działanie kalkulatora
     };
 }
 
