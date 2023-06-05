@@ -1,15 +1,5 @@
 #lang racket
 
-(provide
- stream-cons
- stream-car
- stream-cdr
- stream-null
- stream-null?
- stream-ref
- map2
- integers-from)
-
 ;; processing data sequences with lists --------------------
 
 (define (second-prime-in-interval a b)

@@ -1,0 +1,12 @@
+#lang racket
+
+(require "streams.rkt")
+
+(define (merge sx sy)
+  (cond [(= (stream-car sx) (stream-car sy))
+         (stream-cons (stream-car sx) (merge (stream-cdr sx) (stream-cdr sy)))]
+        [(< (stream-car sx) (stream-car sy))
+         (stream-cons (stream-car sx) (merge (stream-cdr sx) sy))]
+        [else (stream-cons (stream-car sy) (merge sx (stream-cdr sy)))]))
+
+
