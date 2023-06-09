@@ -18,8 +18,8 @@ double wykonaj_print(string wyrazenie) {
         index += znaki.length() + 1; // ustawiamy index na poczatek kolejnego (ewentualnego) symbolu
 
         // jesli pierwszy element symbolu jest cyfra lub znak minus, to przyjmujemy ze to liczba
-        if (isdigit(znaki.at(0)) || znaki.at(0) == '-') { // jesli sa tam tez jakies litery, to przy rzutowaniu bedziemy mieli wyjatek
-            int wartosc = stod(znaki); // stod - konwertuje sekwencję znaków na double
+        if (isdigit(znaki.at(0)) || znaki.at(0) == '-' && znaki.length() > 1) { // jesli sa tam tez jakies litery, to przy rzutowaniu bedziemy mieli wyjatek
+            double wartosc = stod(znaki); // stod - konwertuje sekwencję znaków na double
             shared_ptr<symbol> s;
             s.reset(new liczba(wartosc));
             wektor.push_back(s); // wrzucamy wartosc do wektora symboli
@@ -43,7 +43,7 @@ double wykonaj_print(string wyrazenie) {
                 } catch (out_of_range) {}
             }
 
-            if (!znaleziono) { // jak nada nie, to moze to byc jeszcze funkcja
+            if (!znaleziono) { // jak nadal nie, to moze to byc jeszcze funkcja
                 try {
                     funkcja::rodzaj rodzajFunkcji = funkcja::pobierzFunkcje(znaki);
                     shared_ptr<symbol> s;

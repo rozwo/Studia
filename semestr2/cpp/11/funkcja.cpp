@@ -66,7 +66,7 @@ void funkcja::wykonaj() {
             wynik = wartosci.second + wartosci.first;
             symbol::stos.push(new liczba(wynik)); // wrzucamy na stos wynik
             break;
-        case f_sub: // nie dziala
+        case f_sub:
             wartosci = pom2arg();
             wynik = wartosci.second - wartosci.first;
             symbol::stos.push(new liczba(wynik));
@@ -128,12 +128,12 @@ void funkcja::wykonaj() {
             wynik = ceil(wartosc);
             symbol::stos.push(new liczba(wynik));
             break;
-        case f_frac: //czesc ulamkowa // nie dziala
-            wartosc = pom1arg(); // z jakiegos powodu pobrana ze stosu wartosc jest zawsze calkowita, czemu?
+        case f_frac: //czesc ulamkowa
+            wartosc = pom1arg();
             wynik = wartosc >= 0 ? wartosc - trunc(wartosc) : -(wartosc - trunc(wartosc));
             symbol::stos.push(new liczba(wynik));
             break;
-        case f_sin: // czasem zle sie liczy chyba... ale to funkcja wbudowana...
+        case f_sin:
             wartosc = pom1arg();
             wynik = sin(wartosc);
             symbol::stos.push(new liczba(wynik));
