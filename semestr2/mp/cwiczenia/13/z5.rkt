@@ -12,12 +12,12 @@
 (define (scale s n)
   (stream-cons (* (stream-car s) n) (scale (stream-cdr s) n)))
 
-;cos tu nie gra...
-#;(define hamming
-  (define two (scale (integers-from 1) 2))
-  (define three (scale (integers-from 1) 3))
-  (define five (scale (integers-from 1) 5))
-  (merge two three five))
+(define hamming
+  (letrec ([two (scale (integers-from 1) 2)]
+           [three (scale (integers-from 1) 3)]
+           [five (scale (integers-from 1) 5)])
+  (merge two (merge three five))))
+
 
 
 
@@ -38,3 +38,13 @@
 ;------testy---scale-----
 ;(stream->list (x 1) 8)
 ;(stream->list (scale (x 1) 2) 8)
+
+(define (print n)
+  (define (it i n l)
+    (if (= n 0)
+        l
+        (it (+ i 1) (- n 1) (append l (list (stream-ref hamming i))))))
+  (it 0 n '()))
+(print 11)
+
+

@@ -19,7 +19,7 @@ map<string, funkcja::rodzaj> funkcja::mapaFunkcji = {
     {"min", f_min},
     {"max", f_max},
     {"log", f_log},
-    {"pow", f_pow},
+    {"^", f_pow},
     {"abs", f_abs},
     {"sgn", f_sgn},
     {"floor", f_floor},
@@ -63,49 +63,49 @@ void funkcja::wykonaj() {
     switch(this->dzialanie) {
         case f_add:
             wartosci = pom2arg();
-            wynik = wartosci.first + wartosci.second;
+            wynik = wartosci.second + wartosci.first;
             symbol::stos.push(new liczba(wynik)); // wrzucamy na stos wynik
             break;
-        case f_sub:
+        case f_sub: // nie dziala
             wartosci = pom2arg();
-            wynik = wartosci.first - wartosci.second;
+            wynik = wartosci.second - wartosci.first;
             symbol::stos.push(new liczba(wynik));
             break;
         case f_mul:
             wartosci = pom2arg();
-            wynik = wartosci.first * wartosci.second;
+            wynik = wartosci.second * wartosci.first;
             symbol::stos.push(new liczba(wynik));
             break;
         case f_div:
             wartosci = pom2arg();
             if (wartosci.second == 0)
                 throw overflow_error("dzielenie przez zero");
-            wynik = wartosci.first / wartosci.second;
+            wynik = wartosci.second / wartosci.first;
             symbol::stos.push(new liczba(wynik));
             break;
         case f_modulo:
             wartosci = pom2arg();
-            wynik = fmod(wartosci.first, wartosci.second);
+            wynik = fmod(wartosci.second, wartosci.first);
             symbol::stos.push(new liczba(wynik));
             break;
         case f_min:
             wartosci = pom2arg();
-            wynik = min(wartosci.first, wartosci.second);
+            wynik = min(wartosci.second, wartosci.first);
             symbol::stos.push(new liczba(wynik));
             break;
         case f_max:
             wartosci = pom2arg();
-            wynik = max(wartosci.first, wartosci.second);
+            wynik = max(wartosci.second, wartosci.first);
             symbol::stos.push(new liczba(wynik));
             break;
         case f_log:
             wartosci = pom2arg();
-            wynik = log(wartosci.first)/log(wartosci.second);
+            wynik = log(wartosci.second)/log(wartosci.first);
             symbol::stos.push(new liczba(wynik));
             break;
         case f_pow:
             wartosci = pom2arg();
-            wynik = pow(wartosci.first, wartosci.second);
+            wynik = pow(wartosci.second, wartosci.first);
             symbol::stos.push(new liczba(wynik));
             break;
         case f_abs:
@@ -115,7 +115,7 @@ void funkcja::wykonaj() {
             break;
         case f_sgn:
             wartosc = pom1arg();
-            wynik = wartosc > 0 ? 1 : -1;
+            wynik = wartosc > 0 ? 1 : wartosc == 0 ? 0 : -1;
             symbol::stos.push(new liczba(wynik));
             break;
         case f_floor:
@@ -128,13 +128,12 @@ void funkcja::wykonaj() {
             wynik = ceil(wartosc);
             symbol::stos.push(new liczba(wynik));
             break;
-        case f_frac: //czesc ulamkowa
-            wartosc = pom1arg();
-            wynik = wartosc - trunc(wartosc);
-            wynik = wynik > 0 ? wynik : -wynik;
+        case f_frac: //czesc ulamkowa // nie dziala
+            wartosc = pom1arg(); // z jakiegos powodu pobrana ze stosu wartosc jest zawsze calkowita, czemu?
+            wynik = wartosc >= 0 ? wartosc - trunc(wartosc) : -(wartosc - trunc(wartosc));
             symbol::stos.push(new liczba(wynik));
             break;
-        case f_sin:
+        case f_sin: // czasem zle sie liczy chyba... ale to funkcja wbudowana...
             wartosc = pom1arg();
             wynik = sin(wartosc);
             symbol::stos.push(new liczba(wynik));

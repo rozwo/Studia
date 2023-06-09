@@ -8,6 +8,7 @@ map<string, double> zmienna::mapaZmiennych;
 vector<string> wyjatki = { // wektor zawierajacy slowa niedozwolone jako nazwy zmiennych
     "print",
     "set",
+    "to",
     "clear",
     "exit"
 };

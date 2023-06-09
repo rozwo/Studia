@@ -1,3 +1,4 @@
+#pragma once
 #include "symbol.hpp"
 #include <bits/stdc++.h>
 using namespace std;
