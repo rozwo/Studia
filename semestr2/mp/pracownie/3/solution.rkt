@@ -211,3 +211,24 @@
 
 (define (run [s : S-Exp]) : Value
   (valueE->value (eval-p (parse-p s) init-env-op)))
+
+#;(module+ test
+  (test (run `{define
+                {[fun fact (n) = {ifz n then 1 else {n * {fact ({n - 1})}}}]}
+                for
+                {fact (5)}})
+        120)
+  (test (run `{define
+                {[fun even (n) = {ifz n then 0 else {odd ({n - 1})}}]
+                 [fun odd (n) = {ifz n then 42 else {even ({n - 1})}}]}
+                for
+                {even (1024)}})
+        0)
+  (test (run `{define
+                {[fun gcd (m n) = {ifz n then m
+                                       else {ifz {m <= n}
+                                                 then {gcd (m {n - m})}
+                                                 else {gcd ({m - n} n)}}}]}
+                for
+                {gcd (81 63)}})
+        9))
