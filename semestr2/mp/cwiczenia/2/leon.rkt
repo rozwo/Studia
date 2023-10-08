@@ -1,5 +1,5 @@
 #lang racket
-
+;proba wypisania ladnie mnozenia maciezy by Leon
 (define-struct matrix (a b c d))
 
 (define (print-matrix m)

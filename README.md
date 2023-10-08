@@ -15,4 +15,13 @@ Programowanie obiektowe
 Kurs języka C++  
 Od Mordoru po Matrix. Fantastyczna filozofia polityki  
 Angielski B2 I  
-              
+                  
+
+#### SEM 3
+Anliza numeryczna  
+Matematyka dyskretna (L)  
+Kurs rozszerzony języka Python  
+Kurs języka Java  
+Angielski B2 II  
+WF - Step  
+                  

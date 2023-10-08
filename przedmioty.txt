@@ -11,40 +11,41 @@ Kurs: Wstęp do programowania w języku Python              5         K
 
                                                         ECTS
 SEM 2
-Metody programowania                                      9 !       O
+(Metody programowania                                      9 !       O)       nie zdalam egzaminu...
 Algebra                                                   8 !       O
 Programowanie obiektowe                                   6 ¡PiPO   I
 Kurs języka C++                                           5 ¡PiPO   K
 Angielski B2 I                                            0
 Od Mordoru po Matrix. Fantastyczna filozofia polityki     3         HS
-                                                       = 31
-
-----------------------------PLAN----------------------------
-                                                        ECTS
-SEM (3 lub 4)
-Ochrona własności intelektualnej                          1 ¡OWI (min 1 ECTS)
-O ekonomii i gospodarce inaczej                           3 ¡E      HS  (wersja z cwiczeniami za 5, ale ja chce bez bo HS(min 5 ECTS, max 6 ECTS)) E(min 2 ECTS)
+                                                       = 22 (31)
 
                                                         ECTS
 SEM 3
-Anliza numeryczna (L)                                     8 !       O   (wymagania: Analiza Matematyczna i Algebra)
-Matematyka dyskretna (L)                                  6 !       O
-Angielski B2 II                                          12
-Kurs WWW                                                  5         K (poza glosowaniem)
+Anliza numeryczna                                         8 !       O   (wymagania: Analiza Matematyczna i Algebra)
+Matematyka dyskretna (L)                                  8 !       O
+Angielski B2 II                                         (12 jeśli zdam egzamin)
 WF                                                        0
 Kurs rozszerzony języka Python                            5         K
-(ew. Kurs języka Java/Ruby                                5)        K
-                                                       = 36 (41)
+Kurs języka Java                                          5         K
+                                                       = 26 (38)
 
+----------------------------PLAN----------------------------
                                                         ECTS
 SEM 4
 Algorytmy i struktury danych                             12 !       O
 Rachunek prawdopodobieństwa i statystyka                  6 ¡RPiS   I
 Systemy komputerowe                                       6 ¡ASK,SO I
+Metody programowania                                      9 !       O       15*3*10zł=450zł
 WF                                                        0
-Minikurs C                                                2         K   (poza glosowaniem) (wymagane: Wstęp do programowania w języku Python)
-(ew Logika cyfrowa                                        6)        Iinż
-                                                       = 26 (32)
+                                                       = 33
+
+                                                        ECTS
+SEM (kiedyś)
+Ochrona własności intelektualnej                          1 ¡OWI (min 1 ECTS)
+O ekonomii i gospodarce inaczej                           3 ¡E      HS  (wersja z cwiczeniami za 5, ale ja chce bez bo HS(min 5 ECTS, max 6 ECTS)) E(min 2 ECTS)
+Kurs WWW                                                  5         K
+Minikurs C                                                2         K   (wymagane: Wstęp do programowania w języku Python)
+Logika cyfrowa                                            6         Iinż
 
                                                         ECTS
 SEM 5
