@@ -1,0 +1,18 @@
+1.8. W języku programowania PWO++ funkcja ATG(x) oblicza z bardzo dużą dokładnością wartość arctg(x), jednak tylko wtedy, gdy |x| ≤ 1. Wykorzystując funkcję ATG, zaproponuj szkic algorytmu wyznaczającego w języku PWO++ wartości funkcji arcus tangens z dużą dokładnością także dla |x| > 1.
+
+z wikipedii mamy wzór:
+                           /
+                          | π/2,    if x > 0
+arctan(x) + arctan(1/x) = <
+                          | -π/2,   if x < 0
+                           \
+
+xe<-1,1> → ATG dokładnie arctan(x)
+chcę dokładnie arctan(x) dla xe(-inf,-1)u(1,inf)
+
+dla xe(-inf,-1)
+arctan(x) = -arctan(1/x) - π/2 = -ATG(1/x) - π/2 = -ATG(1/x) + 2*ATG(-1) = -ATG(1/x) - 2*ATG(1)
+
+
+dla xe(1,inf)
+arctan(x) = -arctan(1/x) + π/2 = -ATG(1/x) + π/2 = -ATG(1/x) + 2*ATG(1)
