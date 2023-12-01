@@ -1,0 +1,219 @@
+#lang racket
+
+(let ([x 5])
+  
+    (- (let ([x 7]) x)
+       
+        x))
+
+(let* ([x 5] [y 9])
+  
+    (+ (let* ([x 3] [y (+ x 1)]) x)
+       
+        x y))
+
+#|
+
+;'((car (a . b)) (* 2))
+'((car (a . b)) (* 2))
+(list (list 'car (cons 'a 'b)) (list '* 2))
+
+;'(a 2)
+`(,(car '(a . b)),(* 2))
+(list (car (cons 'a 'b)) (* 2))
+
+;'((+ 1 2 3) (cons) (cons a b))
+'((+ 1 2 3) (cons) (cons a b))
+(list (list '+ 1 2 3) (list 'cons) (list 'cons 'a 'b))
+
+;a jakby bylo ''(2 ,3)
+(list 'quote (list 2 ', 3))
+
+; procedury eq? i equal?
+
+eq?
+; #<procedure:eq?>
+
+equal?
+; #<procedure:equal?>
+
+(equal? '(1 2) '(1 2)) ; #t
+(eq? '(1 2) '(1 2)) ; #f
+(eq? '() '()) ; #t
+(eq? 1 1) ; #t
+(eq? 'abc 'abc) ; #t
+(eq? "abc" "abc") ; #t
+
+(eq? "aaa" (make-string 3 #\a)) ; #f
+(equal? "aaa" (make-string 3 #\a)) ; #t
+(eq? "aaa" (make-string 3 #\a)) ; #f
+(equal? (string->symbol "aaa") 'aaa) ; #t
+(eq? (string->symbol "aaa") 'aaa) ; #t
+
+; kwazicytowania
+
+`()
+; '()
+
+`(1 2 3)
+; '(1 2 3)
+
+`(1 2 3 4 5 . 6)
+; '(1 2 3 4 5 . 6)
+
+`(1 2 ,list)
+; '(1 2 #<procedure:list>)
+
+`(1 2 ,(+ 1 2))
+; '(1 2 3)
+
+`(1 2 (+ 1 2))
+; '(1 2 (+ 1 2))
+
+`(1 2 ,(list 1 '(+ 2 3)))
+; '(1 2 (1 (+ 2 3)))
+
+`(1 2 ,(list 1 `(+ 2 3)))
+; '(1 2 (1 (+ 2 3)))
+
+`(1 2 ,(list 1 `(+ 2 ,(- 3 2))))
+; '(1 2 (1 (+ 2 1)))
+
+(quasiquote 1)
+; 1
+
+(quasiquote (unquote (+ 2 2)))
+; 4
+
+`,(+ 2 2)
+; 4
+
+'`(1 2)
+; '`(1 2)
+
+(car '`(1 2))
+; 'quasiquote
+
+(car ',(1 2))
+; 'unquote
+
+(car ',`(1 2))
+; 'unquote
+
+',`(1 2)
+; ',`(1 2)
+
+',,,,,(1 2)
+; ',,,,,(1 2)
+
+; ,,,,,(1 2)
+; unquote: not in quasiquote in: (unquote (unquote (unquote (unquote (unquote (1 2))))))
+
+; `,,,,,(1 2)
+; unquote: not in quasiquote in: (unquote (unquote (unquote (unquote (1 2)))))
+
+; '`,,,,,(1 2)
+'`,,,,,(1 2)
+
+
+;(build-list n f) = ( list (f 0) ... (f (- n 1) ))
+
+#lang plait
+
+;Zadanie 1.
+;Zaimplementuj procedury o podanych poniżej typach.
+;Procedury nie powinny pętlić się ani zgłaszać błędów.
+
+;('a 'b -> 'a)
+(define (f1 a b) a)
+
+;(('a 'b -> 'c) ('a -> 'b) 'a -> 'c)
+(define (f2 f g x)
+  (f x (g x)))
+
+;((('a -> 'a) -> 'a) -> 'a)
+;(define (((f3 a) a) a) a) ; to nie dziala XD szkodaaa
+(define (id x) x)
+(define (zloz g h) (h (g h)))
+(define (f3 f) (zloz f id))
+
+(define (f3v2 [f : (('a -> 'a) -> 'a)]) (f (lambda (x) x)))
+
+;(('a -> 'b) ('a -> 'c) -> ('a -> ('b * 'c)))
+(define (f4 f g)
+  (lambda (x) (values (f x) (g x))))
+
+;(('a -> (Optionof ('a * 'b))) 'a -> (Listof 'b))
+#;(define (f5 f a)
+  (list (snd (some-v (f (fst (some-v (f a)))))))) ;nie dziala dla none
+
+#;(define (f5v2 f a)
+  (type-case (Optionof 'a) (f a)
+    ((none) '())
+    ((some n)
+     (if (some? (f (fst n)))
+         (list (snd n))
+         '()))))
+
+
+#lang plait
+
+;zmienia miejsce x
+(define (remove x lst)
+  (filter (lambda (y) (not (eq? x y))) lst))
+
+;funkcja bierze w jakiejs kolejnosci elem listy i je skleja
+(define (flatmap f lst)
+  (foldl (lambda (x acc) (append (f x) acc)) '() lst))
+
+(define (perms lst)
+  (if (empty? lst)
+      (list '())
+      (flatmap (lambda (x)
+                 (map (lambda (p) (cons x p))
+                      (perms (remove x lst))))
+               lst)))
+
+;test
+(perms '(1 2 3))
+
+#lang plait
+
+;zadanie 2
+
+(define (apply f x)
+  (f x))
+;(('a -> 'b) 'a -> 'b)
+
+(define (compose f g)
+  (lambda (x)
+    (f (g x))))
+;(('a -> 'b) ('c -> 'a) -> ('c -> 'b))
+
+(define (flip f)
+  (lambda (x y)
+    (f y x)))
+;(('a 'b -> 'c) -> ('b 'a -> 'c))
+
+(define (curry f)
+  (lambda (x)
+    (lambda (y)
+      (f x y))))
+;(('a 'b -> 'c) -> ('a -> ('b -> 'c)))
+
+
+;zadanie 3
+
+(define f1 ((curry compose) (curry compose)))
+;(('a -> ('b -> 'c)) -> ('a -> (('d -> 'b) -> ('d -> 'c))))
+
+(define f2 ((curry compose) (curry apply)))
+;(('a -> ('b -> 'c)) -> ('a -> ('b -> 'c)))
+
+(define f3 ((curry apply) (curry compose)))
+;(('a -> 'b) -> (('c -> 'a) -> ('c -> 'b)))
+
+(define f4 (compose curry flip))
+;(('a 'b -> 'c) -> ('b -> ('a -> 'c)))
+|#
+

@@ -1,0 +1,111 @@
+
+------------------------ZREALIZOWANE------------------------
+                                                        ECTS
+SEM 1
+Analiza matematyczna                                     10 !       O
+Logika dla informatyków                                   8 !       O
+Wstęp do informatyki                                      6         I
+Kurs: Podstawowy warsztat informatyka                     3         K
+Kurs: Wstęp do programowania w języku Python              5         K
+                                                       = 32
+
+                                                        ECTS
+SEM 2
+Metody programowania                                      9 !       O
+Algebra                                                   8 !       O
+Programowanie obiektowe                                   6 ¡PiPO   I
+Kurs języka C++                                           5 ¡PiPO   K
+Angielski B2 I                                            0
+Od Mordoru po Matrix. Fantastyczna filozofia polityki     3         HS
+                                                       = 31
+
+----------------------------PLAN----------------------------
+                                                        ECTS
+//SEM (3 lub 4)
+//Ochrona własności intelektualnej                        1 ¡OWI        (min 1 ECTS)
+//O ekonomii i gospodarce inaczej                         3 ¡E      HS  (wersja z cwiczeniami za 5, ale ja chce bez bo HS(min 5 ECTS, max 6 ECTS)) E(min 2 ECTS)
+
+                                                        ECTS
+SEM 3
+Anliza numeryczna (L)                                     8 !       O   (wymagania: Analiza Matematyczna i Algebra)
+Matematyka dyskretna (L)                                  6 !       O
+Angielski B2 II                                          12
+Kurs WWW                                                  5         K   (poza glosowaniem)
+WF                                                        0
+Kurs rozszerzony języka Python                            5         K
+O ekonomii i gospodarce inaczej                           3 ¡E      HS  (wersja bez cwiczen) (jesli mozna wybrac sem)
+(ew. Kurs języka Java/Ruby                                5)        K
+
+                                                       = 39 (44) (bez ang 29 (32))
+
+                                                        ECTS
+SEM 4
+Algorytmy i struktury danych                             12 !       O
+Rachunek prawdopodobieństwa i statystyka                  6 ¡RPiS   I
+Systemy komputerowe                                       6 ¡ASK,SO I
+WF                                                        0
+Minikurs C                                                2         K   (poza glosowaniem) (wymagane: Wstęp do programowania w języku Python)
+Ochrona własności intelektualnej                          1 ¡OWI        (jesli mozna wybrac sem)
+(ew Logika cyfrowa                                        6)        Iinż
+                                                       = 27 (33)
+
+                                                        ECTS
+SEM 5
+Inżynieria oprogramowania                                 6 ¡IO      I
+                                                        = 6
+
+                                                        ECTS
+SEM 6
+Sztuczna inteligencja                                     5         Iinż
+Sieci komputerowe                                         6 ¡SK     I           (wymagania: Algebra lub Matematyka dyskretna, Systemy operacyjne lub Systemy
+                                                                                komputerowe, poza tym znajomość grup i pierścieni, znajomość tematyki procesów,
+                                                                                sygnałów i komunikacji międzyprocesowej, obsługa wiersza poleceń w systemie Linux,
+                                                                                umiejętność pisania prostych skyptów w powłoce, dobra umiejętność programowania
+                                                                                w C lub C++)
+Bazy Danych/Kurs projekt. aplik. z bazami danych        6/5 ¡BD     I/Kinż      (wymagania do Baz Danych: podstawowa znajomość logiki nabyta np. na Logice
+                                                                                dla informatyków lub Wstępie do matematyki; Podstawowa znajomość algorytmiki
+                                                                                np. Algorytmy i struktury danych (L); Umiejętność programowania wystarczająca
+                                                                                do napisania aplikacji)
+                                                                                (wymagania do kursu: Umiejętność programowania na dowolnej platformie programistycznej
+                                                                                oraz znajomość materiału z kursu WWW) (ten jest bez egzaminu)
+                                                    = 17/16
+
+                                                        ECTS
+SEM 7
+                                                        = 0
+
+
+
+! - przedmioty obowiazkowe na konkretny semestr
+¡ - przedmioty oboziazkowe z tagow
+
+
+
+
+
+                                                    ALTERNATYWA DO INŻYNIERII OPROGRAMOWANIA:
+
+Wybrane elementy praktyki projektowania oprogramowania    6 ¡IO,PiPO Iinż    (zimowy) (wymagania: przyda się znajomość paradygmatu obiektowego, pojęć obiektu,
+                                                                                      konstruktora, dziedziczenia, polimorfizmu i jego realizacji we współczesnych
+                                                                                      językach programowania)
+Projektowanie obiektowe oprogramowania                    6 ¡IO,PiPO Iinż    (letni)  (wymagania: ukończony kurs języka Java lub C#
+                                                                                      (wszystkie przykłady będą bazowały na języku C#))
+Proseminarium: Testowanie oprogramowania                  3 ¡IO      PS      (letni)
+Kurs: Praktyczne aspekty rozwoju oprogramowania           3 ¡IO      Kinż    (letni)
+
+
+
+                                                                    WYMAGANIA
+                                                          (poza spelnionymi juz powyzej)
+
+- praktyka zawodowa                         min 4 ECTS, max 6 ECTS  (min 4tygodnie/100h, max 6tygodnie/150h)
+- projekt programistyczny zespołowy         co najmniej jeden
+- preseminarium                             co najmniej jedno
+(- wf                                        min 2 sem do konca 5)
+(- angielski                                 na poziomie B2)                                                   //przedmiotow z tych kategorii powinnam wybrac jeszcze z:
+- przedmioty informatyczne (I)              co najmniej 66 ECTS, w tym 12 za przedmioty Iinż        po 2 sem mam 12 ECTS za I w tym 0 ECTS za Iinż       //4-5I, 2-3Iinz
+- kursy narzędzi informatyki (K)            co najmniej 10 ECTS za kursy Kinż                       po 2 sem mam 13 ECTS za K w tym 0 ECTS za Kinż       //2-3Kinz
+- łącznie przedmioty O+I+K+P                co najmniej 170 ECTS                                    po 2 sem mam 60 ECTS
+                     ^(obowiązkowe, informatyczne, kursy, projekty programistyczne)
+
+
