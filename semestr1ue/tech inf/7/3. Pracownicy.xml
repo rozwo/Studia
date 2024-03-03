@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pracownicy>
+  <pracownik>
+    <imie>Alojzy</imie>
+    <nazwisko>Filipski</nazwisko>
+    <rocznik>1967</rocznik>
+    </pracownik>
+    <pracownik>
+    <imie>Dawid</imie>
+    <nazwisko>Raskolnikow</nazwisko>
+    <rocznik>1982</rocznik>
+  </pracownik>
+</pracownicy>
