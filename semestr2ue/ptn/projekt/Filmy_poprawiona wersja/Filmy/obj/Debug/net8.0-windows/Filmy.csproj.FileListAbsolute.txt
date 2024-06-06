@@ -1,0 +1,99 @@
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\Filmy.exe
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\Filmy.deps.json
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\Filmy.runtimeconfig.json
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\Filmy.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\Filmy.pdb
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\ControlzEx.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\MahApps.Metro.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\Microsoft.Xaml.Behaviors.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\de\MahApps.Metro.resources.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.csproj.AssemblyReference.cache
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy_MarkupCompile.cache
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy_MarkupCompile.lref
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.g.resources
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.AssemblyInfoInputs.cache
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.AssemblyInfo.cs
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.csproj.CoreCompileInputs.cache
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.csproj.Up2Date
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\refint\Filmy.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.pdb
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.genruntimeconfig.cache
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\ref\Filmy.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\rusin\source\repos\Filmy\Filmy\obj\Debug\net8.0-windows\App.baml
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\Filmy.exe
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\Filmy.deps.json
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\Filmy.runtimeconfig.json
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\Filmy.dll
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\Filmy.pdb
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\ControlzEx.dll
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\MahApps.Metro.dll
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\Microsoft.Xaml.Behaviors.dll
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\de\MahApps.Metro.resources.dll
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\191307\Downloads\Filmy\Filmy\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.csproj.AssemblyReference.cache
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy_MarkupCompile.cache
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy_MarkupCompile.lref
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\App.baml
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.g.resources
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.AssemblyInfoInputs.cache
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.AssemblyInfo.cs
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.csproj.CoreCompileInputs.cache
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.csproj.Up2Date
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.dll
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\refint\Filmy.dll
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.pdb
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\Filmy.genruntimeconfig.cache
+C:\Users\191307\Downloads\Filmy\Filmy\obj\Debug\net8.0-windows\ref\Filmy.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\Filmy.exe
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\Filmy.deps.json
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\Filmy.runtimeconfig.json
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\Filmy.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\Filmy.pdb
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\ControlzEx.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\MahApps.Metro.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\Microsoft.Xaml.Behaviors.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\de\MahApps.Metro.resources.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy.csproj.AssemblyReference.cache
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy_MarkupCompile.cache
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy_MarkupCompile.lref
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\App.baml
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy.g.resources
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy.AssemblyInfoInputs.cache
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy.AssemblyInfo.cs
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy.csproj.CoreCompileInputs.cache
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy.csproj.Up2Date
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\refint\Filmy.dll
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy.pdb
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\Filmy.genruntimeconfig.cache
+C:\Users\191307\Downloads\Filmy_poprawiona wersja\Filmy\obj\Debug\net8.0-windows\ref\Filmy.dll
