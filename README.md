@@ -20,12 +20,13 @@ Angielski B2 I
                   
 
 #### SEM 3 - ZIMOWY(2023/2024)
-Anliza numeryczna  
-Matematyka dyskretna (L)  
+Anliza numeryczna (przestałam chodzić)  
+Matematyka dyskretna (L) (przestałam chodzić)  
 Kurs rozszerzony języka Python  
-Kurs języka Java  
-Angielski B2 II  
-WF - Step  
+Kurs języka Java (przestałam chodzić)  
+Angielski B2 II (przestałam chodzić)  
+Metody implementacji algorytmów (przestałam chodzić)  
+Wf - Step (przestałam chodzić)  
 
 
 #### UNIWERSYTET EKONOMICZNY...................................................
@@ -38,5 +39,19 @@ Technologie informacyjne
 Prawo  
 Rachunkowość  
 Dygitalizacja Modeli Biznesu  
+
+
+#### SEM 2 - LETNI(2023/2024)
+Mikroekonomia  
+Finanse  
+Makroekonomia  
+Programowanie w techologii .NET  
+Podstawy systemów informacyjnych  
+Angielski  
+Niemiecki  
+Wf - Siłownia  
+
+
+#### SEM 3 - ZIMOWY(2024/2025)
   
                   
