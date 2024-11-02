@@ -53,5 +53,16 @@ Wf - Siłownia
 
 
 #### SEM 3 - ZIMOWY(2024/2025)
+Statystyka  
+Bazy danych  
+Programowanie obiektowe w Python  
+Analiza i projektowanie systemów  
+Angielski  
+Niemiecki  
+Etyka wpływu i manipulacji  
+Współczesne wyzwania polityki społecznej  
+Wf - Siłownia  
+
+
   
                   
